@@ -1,0 +1,4394 @@
+#include<iostream>
+#include<string>
+using namespace std;
+/*
+{
+#include <iostream>
+using namespace std;
+
+char square[10] = {'o','1','2','3','4','5','6','7','8','9'};
+int checkwin();
+void board();
+
+int main()
+{
+	int player = 1,i,choice;
+	char mark;
+	do
+	{
+		board();
+		player=(player%2)?1:2;
+		cout << "Player " << player << ", enter a number:  ";
+		cin >> choice;
+		mark=(player == 1) ? 'X' : 'O';
+		if (choice == 1 && square[1] == '1')
+			square[1] = mark;
+		else if (choice == 2 && square[2] == '2')
+			square[2] = mark;
+		else if (choice == 3 && square[3] == '3')
+			square[3] = mark;
+		else if (choice == 4 && square[4] == '4')
+			square[4] = mark;
+		else if (choice == 5 && square[5] == '5')
+			square[5] = mark;
+		else if (choice == 6 && square[6] == '6')
+			square[6] = mark;
+		else if (choice == 7 && square[7] == '7')
+			square[7] = mark;
+		else if (choice == 8 && square[8] == '8')
+			square[8] = mark;
+		else if (choice == 9 && square[9] == '9')
+			square[9] = mark;
+		else
+		{
+			cout<<"Invalid move ";
+			player--;
+			cin.ignore();
+			cin.get();
+		}
+		i=checkwin();
+		player++;
+	}
+	while(i==-1);
+	board();
+	if(i==1)
+		cout<<"==>\aPlayer "<<--player<<" win ";
+	else
+		cout<<"==>\aGame draw";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+**********************************************
+	FUNCTION TO RETURN GAME STATUS
+	1 FOR GAME IS OVER WITH RESULT
+	-1 FOR GAME IS IN PROGRESS
+	O GAME IS OVER AND NO RESULT
+***********************************************
+
+int checkwin()
+{
+	if (square[1] == square[2] && square[2] == square[3])
+		return 1;
+	else if (square[4] == square[5] && square[5] == square[6])
+		return 1;
+	else if (square[7] == square[8] && square[8] == square[9])
+		return 1;
+	else if (square[1] == square[4] && square[4] == square[7])
+		return 1;
+	else if (square[2] == square[5] && square[5] == square[8])
+		return 1;
+	else if (square[3] == square[6] && square[6] == square[9])
+		return 1;
+	else if (square[1] == square[5] && square[5] == square[9])
+		return 1;
+	else if (square[3] == square[5] && square[5] == square[7])
+		return 1;
+	else if (square[1] != '1' && square[2] != '2' && square[3] != '3' && square[4] != '4' && square[5] != '5' && square[6] != '6' && square[7] != '7' && square[8] != '8' && square[9] != '9')
+		return 0;
+	else
+		return -1;
+}
+
+
+*******************************************************************
+     FUNCTION TO DRAW BOARD OF TIC TAC TOE WITH PLAYERS MARK
+********************************************************************
+
+
+void board()
+{
+	system("cls");
+	cout << "\n\n\tTic Tac Toe\n\n";
+	cout << "Player 1 (X)  -  Player 2 (O)" << endl << endl;
+	cout << endl;
+	cout << "     |     |     " << endl;
+	cout << "  " << square[1] << "  |  " << square[2] << "  |  " << square[3] << endl;
+	cout << "_____|_____|_____" << endl;
+	cout << "     |     |     " << endl;
+	cout << "  " << square[4] << "  |  " << square[5] << "  |  " << square[6] << endl;
+	cout << "_____|_____|_____" << endl;
+	cout << "     |     |     " << endl;
+	cout << "  " << square[7] << "  |  " << square[8] << "  |  " << square[9] << endl;
+	cout << "     |     |     " << endl << endl;
+}
+
+*******************************************************************
+
+				END OF PROJECT
+********************************************************************
+}
+*/
+
+/*
+{
+//***************************************************************
+//                   HEADER FILE USED IN PROJECT
+//****************************************************************
+
+#include<iostream>
+#include<fstream>
+#include<cctype>
+#include<iomanip>
+using namespace std;
+
+//***************************************************************
+//                   CLASS USED IN PROJECT
+//****************************************************************
+
+class account
+{
+	int acno;
+	char name[50];
+	int deposit;
+	char type;
+public:
+	void create_account();	//function to get data from user
+	void show_account() const;	//function to show data on screen
+	void modify();	//function to add new data
+	void dep(int);	//function to accept amount and add to balance amount
+	void draw(int);	//function to accept amount and subtract from balance amount
+	void report() const;	//function to show data in tabular format
+	int retacno() const;	//function to return account number
+	int retdeposit() const;	//function to return balance amount
+	char rettype() const;	//function to return type of account
+};         //class ends here
+
+void account::create_account()
+{
+	cout<<"\nEnter The account No. : ";
+	cin>>acno;
+	cout<<"\n\nEnter The Name of The account Holder : ";
+	cin.ignore();
+	cin.getline(name,50);
+	cout<<"\nEnter Type of The account (C/S) : ";
+	cin>>type;
+	type=toupper(type);
+	cout<<"\nEnter The Initial amount(>=500 for Saving and >=1000 for current ) : ";
+	cin>>deposit;
+	cout<<"\n\n\nAccount Created..";
+}
+
+void account::show_account() const
+{
+	cout<<"\nAccount No. : "<<acno;
+	cout<<"\nAccount Holder Name : ";
+	cout<<name;
+	cout<<"\nType of Account : "<<type;
+	cout<<"\nBalance amount : "<<deposit;
+}
+
+
+void account::modify()
+{
+	cout<<"\nAccount No. : "<<acno;
+	cout<<"\nModify Account Holder Name : ";
+	cin.ignore();
+	cin.getline(name,50);
+	cout<<"\nModify Type of Account : ";
+	cin>>type;
+	type=toupper(type);
+	cout<<"\nModify Balance amount : ";
+	cin>>deposit;
+}
+
+	
+void account::dep(int x)
+{
+	deposit+=x;
+}
+	
+void account::draw(int x)
+{
+	deposit-=x;
+}
+	
+void account::report() const
+{
+	cout<<acno<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<deposit<<endl;
+}
+	
+int account::retacno() const
+{
+	return acno;
+}
+
+int account::retdeposit() const
+{
+	return deposit;
+}
+
+char account::rettype() const
+{
+	return type;
+}
+
+
+//***************************************************************
+//    	function declaration
+//****************************************************************
+void write_account();	//function to write record in binary file
+void display_sp(int);	//function to display account details given by user
+void modify_account(int);	//function to modify record of file
+void delete_account(int);	//function to delete record of file
+void display_all();		//function to display all account details
+void deposit_withdraw(int, int); // function to desposit/withdraw amount for given account
+void intro();	//introductory screen function
+
+//***************************************************************
+//    	THE MAIN FUNCTION OF PROGRAM
+//****************************************************************
+
+int main()
+{
+	char ch;
+	int num;
+	intro();
+	do
+	{
+		system("cls");
+		cout<<"\n\n\n\tMAIN MENU";
+		cout<<"\n\n\t01. NEW ACCOUNT";
+		cout<<"\n\n\t02. DEPOSIT AMOUNT";
+		cout<<"\n\n\t03. WITHDRAW AMOUNT";
+		cout<<"\n\n\t04. BALANCE ENQUIRY";
+		cout<<"\n\n\t05. ALL ACCOUNT HOLDER LIST";
+		cout<<"\n\n\t06. CLOSE AN ACCOUNT";
+		cout<<"\n\n\t07. MODIFY AN ACCOUNT";
+		cout<<"\n\n\t08. EXIT";
+		cout<<"\n\n\tSelect Your Option (1-8) ";
+		cin>>ch;
+		system("cls");
+		switch(ch)
+		{
+		case '1':
+			write_account();
+			break;
+		case '2':
+			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+			deposit_withdraw(num, 1);
+			break;
+		case '3':
+			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+			deposit_withdraw(num, 2);
+			break;
+		case '4': 
+			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+			display_sp(num);
+			break;
+		case '5':
+			display_all();
+			break;
+		case '6':
+			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+			delete_account(num);
+			break;
+		 case '7':
+			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+			modify_account(num);
+			break;
+		 case '8':
+			cout<<"\n\n\tThanks for using bank managemnt system";
+			break;
+		 default :cout<<"\a";
+		}
+		cin.ignore();
+		cin.get();
+    }while(ch!='8');
+	return 0;
+}
+
+
+//***************************************************************
+//    	function to write in file
+//****************************************************************
+
+void write_account()
+{
+	account ac;
+	ofstream outFile;
+	outFile.open("account.dat",ios::binary|ios::app);
+	ac.create_account();
+	outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
+	outFile.close();
+}
+
+//***************************************************************
+//    	function to read specific record from file
+//****************************************************************
+
+void display_sp(int n)
+{
+	account ac;
+	bool flag=false;
+	ifstream inFile;
+	inFile.open("account.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		return;
+	}
+	cout<<"\nBALANCE DETAILS\n";
+    	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+	{
+		if(ac.retacno()==n)
+		{
+			ac.show_account();
+			flag=true;
+		}
+	}
+    inFile.close();
+	if(flag==false)
+		cout<<"\n\nAccount number does not exist";
+}
+
+
+//***************************************************************
+//    	function to modify record of file
+//****************************************************************
+
+void modify_account(int n)
+{
+	bool found=false;
+	account ac;
+	fstream File;
+    File.open("account.dat",ios::binary|ios::in|ios::out);
+	if(!File)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		return;
+	}
+	while(!File.eof() && found==false)
+	{
+		File.read(reinterpret_cast<char *> (&ac), sizeof(account));
+		if(ac.retacno()==n)
+		{
+			ac.show_account();
+			cout<<"\n\nEnter The New Details of account"<<endl;
+			ac.modify();
+			int pos=(-1)*static_cast<int>(sizeof(account));
+			File.seekp(pos,ios::cur);
+		    File.write(reinterpret_cast<char *> (&ac), sizeof(account));
+		    cout<<"\n\n\t Record Updated";
+		    found=true;
+		  }
+	}
+	File.close();
+	if(found==false)
+		cout<<"\n\n Record Not Found ";
+}
+
+//***************************************************************
+//    	function to delete record of file
+//****************************************************************
+
+
+void delete_account(int n)
+{
+	account ac;
+	ifstream inFile;
+	ofstream outFile;
+	inFile.open("account.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		return;
+	}
+	outFile.open("Temp.dat",ios::binary);
+	inFile.seekg(0,ios::beg);
+	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+	{
+		if(ac.retacno()!=n)
+		{
+			outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
+		}
+	}
+    inFile.close();
+	outFile.close();
+	remove("account.dat");
+	rename("Temp.dat","account.dat");
+	cout<<"\n\n\tRecord Deleted ..";
+}
+
+//***************************************************************
+//    	function to display all accounts deposit list
+//****************************************************************
+
+void display_all()
+{
+	account ac;
+	ifstream inFile;
+	inFile.open("account.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		return;
+	}
+	cout<<"\n\n\t\tACCOUNT HOLDER LIST\n\n";
+	cout<<"====================================================\n";
+	cout<<"A/c no.      NAME           Type  Balance\n";
+	cout<<"====================================================\n";
+	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+	{
+		ac.report();
+	}
+	inFile.close();
+}
+
+//***************************************************************
+//    	function to deposit and withdraw amounts
+//****************************************************************
+
+void deposit_withdraw(int n, int option)
+{
+	int amt;
+	bool found=false;
+	account ac;
+	fstream File;
+    File.open("account.dat", ios::binary|ios::in|ios::out);
+	if(!File)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		return;
+	}
+	while(!File.eof() && found==false)
+	{
+		File.read(reinterpret_cast<char *> (&ac), sizeof(account));
+		if(ac.retacno()==n)
+		{
+			ac.show_account();
+			if(option==1)
+			{
+				cout<<"\n\n\tTO DEPOSITE AMOUNT ";
+				cout<<"\n\nEnter The amount to be deposited";
+				cin>>amt;
+				ac.dep(amt);
+			}
+		    if(option==2)
+			{
+				cout<<"\n\n\tTO WITHDRAW AMOUNT ";
+				cout<<"\n\nEnter The amount to be withdraw";
+				cin>>amt;
+				int bal=ac.retdeposit()-amt;
+				if((bal<500 && ac.rettype()=='S') || (bal<1000 && ac.rettype()=='C'))
+					cout<<"Insufficience balance";
+				else
+					ac.draw(amt);
+		      }
+			int pos=(-1)*static_cast<int>(sizeof(ac));
+			File.seekp(pos,ios::cur);
+			File.write(reinterpret_cast<char *> (&ac), sizeof(account));
+			cout<<"\n\n\t Record Updated";
+			found=true;
+	       }
+         }
+    File.close();
+	if(found==false)
+		cout<<"\n\n Record Not Found ";
+}
+
+
+//***************************************************************
+//    	INTRODUCTION FUNCTION
+//****************************************************************
+
+void intro()
+{
+	cout<<"\n\n\n\t  BANK";
+	cout<<"\n\n\tMANAGEMENT";
+	cout<<"\n\n\t  SYSTEM";
+	cout<<"\n\n\n\nMADE BY : your name";
+	cout<<"\n\nSCHOOL : your school name";
+	cin.get();
+}
+
+//***************************************************************
+//    			END OF PROJECT
+//***************************************************************
+}
+*/
+
+/*
+{
+//***************************************************************
+//                   HEADER FILE USED IN PROJECT
+//****************************************************************
+
+#include<iostream>
+#include<fstream>
+#include<iomanip>
+using namespace std;
+
+
+//***************************************************************
+//                   CLASS USED IN PROJECT
+//****************************************************************
+
+class student
+{
+	int rollno;
+	char name[50];
+	int p_marks, c_marks, m_marks, e_marks, cs_marks;
+	double per;
+	char grade;
+	void calculate();	//function to calculate grade
+public:
+	void getdata();	//function to accept data from user
+	void showdata() const;	//function to show data on screen
+	void show_tabular() const;
+	int retrollno() const;
+}; //class ends here
+
+
+void student::calculate()
+{
+	per=(p_marks+c_marks+m_marks+e_marks+cs_marks)/5.0;
+	if(per>=60)
+		grade='A';
+	else if(per>=50)
+		grade='B';
+	else if(per>=33)
+		grade='C';
+	else
+		grade='F';
+}
+
+void student::getdata()
+{
+	cout<<"\nEnter The roll number of student ";
+	cin>>rollno;
+	cout<<"\n\nEnter The Name of student ";
+	cin.ignore();
+	cin.getline(name,50);
+	cout<<"\nEnter The marks in physics out of 100 : ";
+	cin>>p_marks;
+	cout<<"\nEnter The marks in chemistry out of 100 : ";
+	cin>>c_marks;
+	cout<<"\nEnter The marks in maths out of 100 : ";
+	cin>>m_marks;
+	cout<<"\nEnter The marks in english out of 100 : ";
+	cin>>e_marks;
+	cout<<"\nEnter The marks in computer science out of 100 : ";
+	cin>>cs_marks;
+	calculate();
+}
+
+void student::showdata() const
+{
+	cout<<"\nRoll number of student : "<<rollno;
+	cout<<"\nName of student : "<<name;
+	cout<<"\nMarks in Physics : "<<p_marks;
+	cout<<"\nMarks in Chemistry : "<<c_marks;
+	cout<<"\nMarks in Maths : "<<m_marks;
+	cout<<"\nMarks in English : "<<e_marks;
+	cout<<"\nMarks in Computer Science :"<<cs_marks;
+	cout<<"\nPercentage of student is  :"<<per;
+	cout<<"\nGrade of student is :"<<grade;
+}
+
+void student::show_tabular() const
+{
+	cout<<rollno<<setw(6)<<" "<<name<<setw(10)<<p_marks<<setw(4)<<c_marks<<setw(4)<<m_marks<<setw(4)<<e_marks<<setw(4)<<cs_marks<<setw(8)<<per<<setw(6)<<grade<<endl;
+}
+	 
+int  student::retrollno() const
+{
+	return rollno;
+}
+
+
+//***************************************************************
+//    	function declaration
+//****************************************************************
+
+void write_student();	//write the record in binary file
+void display_all();		//read all records from binary file
+void display_sp(int);	//accept rollno and read record from binary file
+void modify_student(int);	//accept rollno and update record of binary file
+void delete_student(int);	//accept rollno and delete selected records from binary file
+void class_result();	//display all records in tabular format from binary file
+void result();	//display result menu
+void intro();	//display welcome screen
+void entry_menu();	//display entry menu on screen
+
+
+//***************************************************************
+//    	THE MAIN FUNCTION OF PROGRAM
+//****************************************************************
+
+
+int main()
+{
+	char ch;
+	cout.setf(ios::fixed|ios::showpoint);
+	cout<<setprecision(2); // program outputs decimal number to two decimal places
+	intro();
+	do
+	{
+		system("cls");
+		cout<<"\n\n\n\tMAIN MENU";
+		cout<<"\n\n\t01. RESULT MENU";
+		cout<<"\n\n\t02. ENTRY/EDIT MENU";
+		cout<<"\n\n\t03. EXIT";
+		cout<<"\n\n\tPlease Select Your Option (1-3) ";
+		cin>>ch;
+		switch(ch)
+		{
+			case '1': result();
+				break;
+			case '2': entry_menu();
+				break;
+			case '3':
+				break;
+			default :cout<<"\a";
+		}
+    }while(ch!='3');
+	return 0;
+}
+
+//***************************************************************
+//    	function to write in file
+//****************************************************************
+
+void write_student()
+{
+	student st;
+	ofstream outFile;
+	outFile.open("student.dat",ios::binary|ios::app);
+	st.getdata();
+	outFile.write(reinterpret_cast<char *> (&st), sizeof(student));
+	outFile.close();
+    cout<<"\n\nStudent record Has Been Created ";
+	cin.ignore();
+	cin.get();
+}
+
+//***************************************************************
+//    	function to read all records from file
+//****************************************************************
+
+void display_all()
+{
+	student st;
+	ifstream inFile;
+	inFile.open("student.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	cout<<"\n\n\n\t\tDISPLAY ALL RECORD !!!\n\n";
+	while(inFile.read(reinterpret_cast<char *> (&st), sizeof(student)))
+	{
+		st.showdata();
+		cout<<"\n\n====================================\n";
+	}
+	inFile.close();
+	cin.ignore();
+	cin.get();
+}
+
+//***************************************************************
+//    	function to read specific record from file
+//****************************************************************
+
+void display_sp(int n)
+{
+	student st;
+	ifstream inFile;
+	inFile.open("student.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	bool flag=false;
+	while(inFile.read(reinterpret_cast<char *> (&st), sizeof(student)))
+	{
+		if(st.retrollno()==n)
+		{
+	  		 st.showdata();
+			 flag=true;
+		}
+	}
+	inFile.close();
+	if(flag==false)
+		cout<<"\n\nrecord not exist";
+	cin.ignore();
+	cin.get();
+}
+
+//***************************************************************
+//    	function to modify record of file
+//****************************************************************
+
+void modify_student(int n)
+{
+	bool found=false;
+	student st;
+	fstream File;
+	File.open("student.dat",ios::binary|ios::in|ios::out);
+	if(!File)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+
+	while(!File.eof() && found==false)
+	{
+		File.read(reinterpret_cast<char *> (&st), sizeof(student));
+		if(st.retrollno()==n)
+		{
+			st.showdata();
+			cout<<"\n\nPlease Enter The New Details of student"<<endl;
+			st.getdata();
+		    int pos=(-1)*static_cast<int>(sizeof(st));
+		    File.seekp(pos,ios::cur);
+		    File.write(reinterpret_cast<char *> (&st), sizeof(student));
+		    cout<<"\n\n\t Record Updated";
+		    found=true;
+		}
+	}
+	File.close();
+	if(found==false)
+		cout<<"\n\n Record Not Found ";
+	cin.ignore();
+	cin.get();
+
+}
+
+//***************************************************************
+//    	function to delete record of file
+//****************************************************************
+
+void delete_student(int n)
+{
+	student st;
+	ifstream inFile;
+	inFile.open("student.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	ofstream outFile;
+	outFile.open("Temp.dat",ios::out);
+	inFile.seekg(0,ios::beg);
+	while(inFile.read(reinterpret_cast<char *> (&st), sizeof(student)))
+	{
+		if(st.retrollno()!=n)
+		{
+			outFile.write(reinterpret_cast<char *> (&st), sizeof(student));
+		}
+	}
+	outFile.close();
+	inFile.close();
+	remove("student.dat");
+	rename("Temp.dat","student.dat");
+	cout<<"\n\n\tRecord Deleted ..";
+	cin.ignore();
+	cin.get();
+}
+
+//***************************************************************
+//    	function to display all students grade report
+//****************************************************************
+
+void class_result()
+{
+	student st;
+	ifstream inFile;
+	inFile.open("student.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	cout<<"\n\n\t\tALL STUDENTS RESULT \n\n";
+	cout<<"==========================================================\n";
+	cout<<"R.No       Name        P   C   M   E   CS   %age   Grade"<<endl;
+	cout<<"==========================================================\n";
+	while(inFile.read(reinterpret_cast<char *> (&st), sizeof(student)))
+	{
+		st.show_tabular();
+	}
+	cin.ignore();
+	cin.get();
+	inFile.close();
+}
+
+//***************************************************************
+//    	function to display result menu
+//****************************************************************
+
+void result()
+{
+	char ch;
+	int rno;
+	system("cls");
+	cout<<"\n\n\n\tRESULT MENU";
+	cout<<"\n\n\n\t1. Class Result";
+	cout<<"\n\n\t2. Student Report Card";
+	cout<<"\n\n\t3. Back to Main Menu";
+	cout<<"\n\n\n\tEnter Choice (1/2/3)? ";
+	cin>>ch;
+	system("cls");
+	switch(ch)
+	{
+	case '1' :	class_result(); break;
+	case '2' :	cout<<"\n\n\tEnter Roll Number Of Student : "; cin>>rno;
+				display_sp(rno); break;
+	case '3' :	break;
+	default:	cout<<"\a";
+	}
+}
+
+//***************************************************************
+//    	INTRODUCTION FUNCTION
+//****************************************************************
+
+void intro()
+{
+	cout<<"\n\n\n\t\t  STUDENT";
+	cout<<"\n\n\t\tREPORT CARD";
+	cout<<"\n\n\t\t  PROJECT";
+	cout<<"\n\n\n\tMADE BY : SULABH AGRAWAL";
+	cout<<"\n\tSCHOOL : CAMBRIDGE SCHOOL";
+	cin.get();
+}
+
+//***************************************************************
+//    	ENTRY / EDIT MENU FUNCTION
+//****************************************************************
+
+void entry_menu()
+{
+	char ch;
+	int num;
+	system("cls");
+	cout<<"\n\n\n\tENTRY MENU";
+	cout<<"\n\n\t1.CREATE STUDENT RECORD";
+	cout<<"\n\n\t2.DISPLAY ALL STUDENTS RECORDS";
+	cout<<"\n\n\t3.SEARCH STUDENT RECORD ";
+	cout<<"\n\n\t4.MODIFY STUDENT RECORD";
+	cout<<"\n\n\t5.DELETE STUDENT RECORD";
+	cout<<"\n\n\t6.BACK TO MAIN MENU";
+	cout<<"\n\n\tPlease Enter Your Choice (1-6) ";
+	cin>>ch;
+	system("cls");
+	switch(ch)
+	{
+	case '1':	write_student(); break;
+	case '2':	display_all(); break;
+	case '3':	cout<<"\n\n\tPlease Enter The roll number "; cin>>num;
+				display_sp(num); break;
+	case '4':	cout<<"\n\n\tPlease Enter The roll number "; cin>>num;
+				modify_student(num);break;
+	case '5':	cout<<"\n\n\tPlease Enter The roll number "; cin>>num;
+				delete_student(num);break;
+	case '6':	break;
+	default:	cout<<"\a"; entry_menu();
+	}
+}
+
+//***************************************************************
+//    			END OF PROJECT
+//***************************************************************
+}
+*/
+
+	                 //***************************************************************
+                     //                        1st Semester
+                     //****************************************************************
+
+
+//***************************************************************
+//    			Procedural(Functional) Oriented Programing
+//***************************************************************
+       
+
+////***************************************************************
+////    			My programs of BIIT
+////***************************************************************
+
+
+
+// simple programing C++ without using function
+
+/*
+void main()
+{
+	cout<<"hello world";
+	system("pause");
+}
+*/
+//1 'Print Hello world'
+
+/*
+void main()
+{
+int a,b,sum;
+cout<<"enter a number"<<endl;
+cin>>a>>b;
+sum=a+b;
+cout<<endl<<"your sum is: "<<sum<<endl<<endl;
+system("pause");
+}
+*/
+//2 'taking sum of two numbers'
+
+/*
+void main()
+{
+int r,pi,area;
+	pi=3.14;
+cout<<"Enter the radius"<<endl;
+cin>>r;
+area=2*pi*r*r;
+cout<<"your area of circle is: "<<area<<endl;
+system("pause");
+
+}
+*/
+//3 'calculate area of circle'
+
+/*
+void main()
+{
+	int c;
+	cout<<"enter  a number please"<<endl;
+	cin>>c;
+	cout<<"this numeber is: "<<(c<10)<<endl;
+	system("pause");
+
+}
+*/
+//4 'checking true or false'
+
+/*
+void main()
+{
+ int num;
+ cout<<"Enter a number"<<endl;
+ cin>>num;
+ if(num%2==0)
+ {
+ cout<<"You entered even number"<<endl;
+ }
+ else
+ {
+ cout<<"you entered odd number"<<endl;
+ }
+ system("pause");
+}
+*/
+//5 'checking even or odd by using if-else'
+
+/*
+void main()
+{
+ int num;
+ cout<<"Enter a number"<<endl;
+ cin>>num;
+ if(num%2==0)
+ {
+ cout<<"You entered even number"<<endl;
+ }
+ if(num%2==1)
+ {
+ cout<<"you entered odd number"<<endl;
+ }
+ system("pause");
+}
+*/
+
+//6 checking even or odd by using if
+
+/*
+void main()
+{
+int a;
+cout<<"Enter your marks please"<<endl;
+cin>>a;
+if(a>=80 && a<100)
+cout<<"your grade is A"<<endl;
+else if(a>=60 && a<70)
+cout<<"your grade is B"<<endl;
+else if(a>=50 && a<60)
+cout<<"your grade is C"<<endl;
+else if(a>=40 && a<50)
+cout<<"your grade is D"<<endl;
+else if(a>=33 && a<40)
+cout<<"your grade is E"<<endl;
+else
+cout<<"you are failed boss"<<endl;
+system("pause");
+}
+*/
+//7 'checking grades by using if-else-if'
+
+/*
+void main()
+{
+int a,b,c;
+cout<<"enter 3 number please"<<endl;
+cin>>a>>b>>c;
+if(a>b && a>c)
+	cout<<"a is greater: "<<a<<endl;
+if(b>a && b>c)
+	cout<<"b is greater number: "<<b<<endl;
+if(c>a && c>b)
+	cout<<"c is greater number: "<<c<<endl;
+if(a==b || b==c)
+	cout<<"you enter same values which is not valid"<<endl;
+system("pause");
+}
+*/
+//8 'enter a 3 number and check which is max by using assigment operator'
+
+/*
+void main()
+{
+int a,b,c,tmp;
+cout<<"enter 3 number please"<<endl;
+cin>>a>>b>>c;
+tmp=a;
+if (tmp<b)
+	tmp=b;
+if (tmp<c)
+	tmp=c;
+cout<<"so greater number is: "<<tmp;
+system("pause");
+
+}
+*/
+//9 'enter a 3 number and check which is max by using making one extra variable'
+
+/*
+void main()
+{
+int a,b;
+char op;
+cout<<"enter two numbers: "<<endl;
+cin>>a>>b;
+cout<<"enter operator like ('+' or '-' or '*' or '/')"<<endl;
+cin>>op;
+if(op =='+')
+	cout<<"your sum : "<<a+b<<endl;
+	else if(op=='-')
+		cout<<"your subtraction : "<<a-b<<endl;
+		else if(op=='*')
+			cout<<"your multiplication : "<<a*b<<endl;
+			else if(op=='/')
+				cout<<"your division : "<<a/b<<endl;
+				else
+		cout<<"invalid"<<endl;
+			system("pause");
+
+}
+*/
+//10 'Enter a two numbers and then add operation(=,-,*,/) by using if-else-if'
+
+/*
+void main()
+{
+int a,b;
+char op;
+cout<<"enter two numbers: "<<endl;
+cin>>a>>b;
+cout<<"enter operator like ('+' or '-' or '*' or '/')"<<endl;
+cin>>op;
+switch(op)
+{
+case '+':
+    cout<<"your sum : "<<a+b<<endl;
+	break;
+case '-':
+    cout<<"your subtraction : "<<a-b<<endl;
+	break;
+case '*':
+	cout<<"your multiplication : "<<a*b<<endl;
+	break;
+case '/':
+	cout<<"your division : "<<a/b<<endl;
+	break;
+default:
+	cout<<"Entering invalid"<<endl;
+}
+system("pause");
+}
+*/ 
+//11 'Enter a two numbers and then add operation(=,-,*,/) by using switch'
+
+/*
+void main()
+{
+int a;
+cout<<"enter two numbers: "<<endl;
+cin>>a;
+switch(a%2)
+{
+case 0:
+		cout<<"you have enter even number"<<endl;
+break;
+case 1:
+	cout<<"you have enter odd number"<<endl;
+	break;
+default:
+cout<<"you have enter invalid number"<<endl;
+}
+system("pause");
+}
+*/
+//12 'Display even and odd using switch'
+
+/*
+void main()
+{
+int a,k;
+cout<<"enter a numbers: "<<endl;
+cin>>a;
+for(k=1;k<=10;k++)
+{
+	cout<<a<<" * "<<k<<" = "<<(a*k)<<endl;
+}
+	system("pause");
+}
+*/
+//13 'print table by using for loop'
+
+/*
+void main()
+{
+	int cnic,i;
+	char Vote=0;
+	cout<<"Assalam-u-Alikum! Welcome To Electronic Vote System in Pakistan"<<endl;
+	cout<<"Enter your CNIC Number (1-10)"<<endl;
+	cin>>cnic;
+for(i=1;i<=10;i++)
+{
+if(cnic==i)
+ {
+	 {
+		cout<<"Your Account has been conformed Thank you!"<<endl;
+   }
+cout<<"Now select your favourate leader to vote"<<endl; 
+cout<<"Press X for PTI"<<endl;
+cout<<"Press Y for PMLN"<<endl;
+cout<<"Press Z for PPP"<<endl;
+cin>>Vote;
+if(Vote=='X' || Vote=='Y' || Vote=='Z')
+{
+	cout<<"Your vote has been conformed! Thank you"<<endl;
+}
+
+else if(Vote!='X' || Vote!='Y' || Vote!='Z')
+{
+	cout<<"You are doing something wrong & now this is last chance for you to submit your vote to your leader"<<
+		"and if you again enter wrong data your vote will be cancelled"<<endl;
+}
+  cout<<"Again select your favourate leader to vote"<<endl;
+  cout<<"Press X for PTI"<<endl;
+cout<<"Press Y for PMLN"<<endl;
+cout<<"Press Z for PPP"<<endl;
+cin>>Vote;
+
+if(Vote!='X' || Vote!='Y' || Vote!='Z')
+{
+	cout<<"Sorry!you have been BAN now and your has been cancelled"<<endl;
+}
+
+break;
+
+ }
+system("pause");
+}
+*/
+//14 'Electronic vote system'
+
+/*
+void main()
+{
+	int n;
+	cout<<"enter a number"<<endl;
+	cin>>n;
+	cout<<n<<" * 1 = "<<n*1<<endl;
+	cout<<n<<" * 2 = "<<n*2<<endl;
+	cout<<n<<" * 3 = "<<n*3<<endl;
+	cout<<n<<" * 4 = "<<n*4<<endl;
+	cout<<n<<" * 5 = "<<n*5<<endl;
+	cout<<n<<" * 6 = "<<n*6<<endl;
+	cout<<n<<" * 7 = "<<n*7<<endl;
+	cout<<n<<" * 8 = "<<n*8<<endl;
+	cout<<n<<" * 9 = "<<n*9<<endl;
+	cout<<n<<" * 10 = "<<n*10<<endl;
+	cout<<n<<" * 11 = "<<n*11<<endl;
+	cout<<n<<" * 12 = "<<n*12<<endl;
+	cout<<n<<" * 13 = "<<n*13<<endl;
+	system("pause");
+
+}
+*/
+//16 'manual way to print table' to much writing effort'
+
+/*
+void main()
+{
+
+	int a,k;
+cout<<"enter a numbers: "<<endl;
+cin>>a;
+k=1;
+while(k<=11)
+		cout<<a<<" * "<<k<<" = "<<(a*k)<<endl;
+k=1;
+
+	system("pause");
+
+}
+*/
+//17 'print table using while loop'
+
+/*
+void main()
+
+{
+	int i,a,sum=0,k=1;
+	cout<<"Enter 10 numbers"<<endl;
+
+	for(i=1;i<=10;i++)
+	{
+		cin>>a;
+	sum=sum+a;
+    cout<<"count number"<<k++<<endl;
+	}
+
+	cout<<"your sum is: "<<sum<<endl;
+
+	system("pause");
+}
+*/
+//18 'enter 10 numbers by using loop and print their sum with count'
+
+/*
+void main()
+{
+	int i,a,temp=0;
+	cout<<"Enter 5 numbers"<<endl;
+  	
+	for(i=0;i<5;i++)
+	{
+	cin>>a;
+	if(a<temp)
+	a=temp;
+	temp=a;
+	}
+	cout<<"minimum number is: "<<temp<<endl;
+		system("pause");
+}
+*/
+//19 'Enter 5 numbers and find min number by using one extra vaiable' //pro
+
+/*
+void main()
+{
+	int i,a,count=0;
+	cout<<"Enter 10 numbers"<<endl;
+	for(i=1;i<=10;i++)
+	{
+		cin>>a;
+	if(a%2==1)
+		{
+		        cout<<"count number: "<<count++<<endl;
+			cout<<"these are odd numbers"<<a<<endl;
+		}
+	}
+	system("pause");
+
+}
+*/
+//20 'input 10 values from user and tell odd and also count only odd number'
+
+/*
+void main()
+
+{
+
+int a,c=0,s=0,i;
+cout<<"enter 10 no: "<<endl;
+for(i=1;i<=10;i++)
+{
+	cin>>a;
+	if(a%2==1)
+	{
+	c++;
+	s=s+a;
+	}
+	cout<<"odd sount is: "<<c<<endl;
+	cout<<"odd sum: "<<s<<endl;
+}
+system("pause");
+}
+*/
+//21 'input 10 values from user and tell odd and also count only odd number'using university method'
+
+/*
+void main()
+{
+	int a,start,ending,sum=0,main_value;
+	cout<<"Enter starting value"<<endl;
+	cin>>start;
+	cout<<"Enter Ending value"<<endl;
+	cin>>ending;
+		cout<<"now enter main value that you enter to take maximum"<<endl;
+	for(a=start;a<=ending;a++)
+	{
+		cin>>main_value;
+		sum=sum+main_value;
+	
+	}
+	cout<<"your sum is: "<<sum<<endl;
+	system("pause");
+}
+*/
+
+//22 'Enter the starting and ending range to add numbers'
+
+/*
+void main()
+{
+	int num,factorial=1,i;
+	cout<<"Enter number that you have to print factorial"<<endl;
+	cin>>num;
+	for(i=1;i<=num;i++)
+	{
+		factorial=factorial*i;
+	}
+	cout<<"Your factorial of"<<" "<<num<<" "<<"is:"<<"  "<<factorial<<endl;
+system("pause");
+}
+*/
+//23 'Enter number and print its factoiral'
+
+
+/*
+void main()
+{
+int a,i;
+cout<<"Enter a number that you have to check whether it is prime number or not"<<endl;
+cin>>a;
+for(i=2;i<=a;i++)
+{
+	if(a%i==0)
+{
+	 cout<<"you enter a prime number"<<endl;
+}
+}
+if(a==i)
+ {
+	cout<<"you enter a not prime number"<<endl;
+ }
+system("pause");
+}
+*/
+
+//24 'check number that whether prime number or not' //pro
+
+/*
+void main()
+{
+float Centi,Fahrint=0;
+cout<<"Enter temperature in Centigrade: "<<endl;
+cin>>Centi;
+	Fahrint=((9/5)*(Centi+32));
+	cout<<"Temperature in Fahreint is: "<<Fahrint<<endl;
+system("pause");
+}
+*/
+//25 'Convert Centigrade into faranhite temperature'
+
+/*
+void main()
+{
+	int a,sq,cub;
+	char k;
+ do
+{
+	cout<<"Enter a number that you have to print square and cube: ";
+	cin>>a;
+	sq=a*a;
+	cout<<endl;
+	cout<<"Your square is: "<<sq<<endl;
+	cout<<endl;
+	cub=a*a*a;
+	cout<<"Your cube is: "<<cub;
+	cout<<endl;
+	cout<<endl;
+	cout<<"would you like to repeat (Y/N): ";
+		cin>>k;
+		cout<<endl;
+}
+    while(k=='Y' || k=='y');
+	
+	cout<<endl;
+system("pause");
+}
+*/
+
+//26 'Print Square and cubie of entered number'
+
+/*
+void main()
+{
+	int i,s,e;
+	cout<<"Enter a starting Point: ";
+	cin>>s;
+	cout<<endl;
+	cout<<"Enter a ending point: ";
+	cin>>e;
+    for(i=s;i<=e;i++)
+	{
+		cout<<"\n"<<i;
+	}
+	cout<<endl;
+system("pause");
+}
+*/
+//27 'Counting from start to Ending point'
+
+/*
+void main()
+{
+	int s;
+	char option;
+do
+{
+	cout<<"**** Attention Please! For your kind information 1(One) is used for True & 0(Zero) is used for false ****";
+	cout<<endl;
+	cout<<"Press 2 to see truth table of AND Operation"<<endl
+		<<"Press 3 to see truth table of OR Operation"<<endl
+		<<"Press 4 to see truth table of NOT Operation"<<endl;
+	cin>>s;
+	if(s==2)
+	{
+		cout<<"truth table of AND Operation"<<endl;
+	cout<<(s<10)<<"  "<<(s<10)<<"  "<<(s<10)<<endl;
+	cout<<(s<10)<<"  "<<(s>10)<<"  "<<(s>10)<<endl;
+	cout<<(s>10)<<"  "<<(s<10)<<"  "<<(s>10)<<endl;
+	cout<<(s>10)<<"  "<<(s>10)<<"  "<<(s>10)<<endl;
+	}
+	if(s==3)
+	{
+		cout<<"truth table of OR Operation"<<endl;
+	cout<<(s<10)<<"  "<<(s<10)<<"  "<<(s<10)<<endl;
+	cout<<(s<10)<<"  "<<(s>10)<<"  "<<(s<10)<<endl;
+	cout<<(s>10)<<"  "<<(s<10)<<"  "<<(s<10)<<endl;
+	cout<<(s>10)<<"  "<<(s>10)<<"  "<<(s>10)<<endl;
+	 }
+	  if(s==4)
+	 {
+		 cout<<"truth table of OR Operation"<<endl;
+	cout<<(s<10)<<"  "<<(s>10)<<endl;
+	cout<<(s<10)<<"  "<<(s>10)<<endl;
+	cout<<(s>10)<<"  "<<(s<10)<<endl;
+	cout<<(s>10)<<"  "<<(s<10)<<endl;
+	}
+	  cout<<"would you like to repeat (Y/N): ";
+		cin>>option;
+		cout<<endl;
+
+}
+while(option=='Y'||option=='y');
+	 system("pause");
+}
+*/
+
+//28 'Truth table' 
+
+/*
+void main()
+{
+	int a;
+	cout<<"Enter a number: "<<endl;
+	cin>>a;
+	if(a>0)
+	{
+		cout<<"sq: "<<a*a<<endl;
+		cout<<"cub: "<<a*a*a<<endl;
+	}
+	else if(a<0)
+	{
+		 		for(int i=1;i<5;i++)
+		cout<< "Multiple of"<<" "<<a*i<<" : "<<endl;
+	}
+	system("pause");
+}
+*/
+
+//29 if entered number is greater than zero then print its square and cubie 
+ // and if number is smaller than zero then print its multiples
+
+/*
+void main()
+{
+	int a,i,avg,sum=0;
+	cout<<"Enter 10 Numbers"<<endl;
+		for(i=1;i<11;i++)
+		{
+		cin>>a;
+		sum=sum+a;
+		}
+		cout<<"Your sum is: "<<sum<<endl;
+		avg=sum/a;
+		cout<<"your avaerage is: "<<avg<<endl;
+		system("pause");
+}
+*/
+//30 'input 10 numbers and print its avg and sum'
+
+/*
+void main()
+{
+   int num,i;
+   cout<<"Enter 5 numbers: "<<endl;
+   cin>>num;     
+   int	temp=num;
+   for(i=1;i<5;i++)
+   cin>>num;
+   if(num<temp)
+   temp=num;
+   cout<<"Mix: "<<temp<<endl;
+   system("pause");
+}
+*
+//31 'find maximum number between 5 entered numbers'
+
+/*
+void main()
+{
+	int a,i,sum=0;
+	cout<<"Enter 5 Numbers"<<endl;
+	for(i=1;i<=5;i++)
+	{
+	cin>>a;
+	if(a%2==1)
+	{
+	cout<<"ODDS Numbers are: "<<a<<endl;
+	}
+	}
+	sum=sum+a;
+	system("pause");
+}
+*/
+//32 'Entered 5 numbers and tell sum and also tell odds numbers'
+
+/*
+void main()
+{
+	int a,i,b;
+	cout<<"Enter a number: "<<endl;
+	cin>>a;
+	for(i=2;i<2;i++)
+	{
+	if(a%i==0)
+		b++;
+	}
+	if(b>0)
+	{
+		cout<<"Not a prime number"<<endl;
+	}
+	else
+		cout<<"Prime number"<<endl;
+		system("pause");
+}
+*/
+
+//problem
+
+
+/*
+void main()
+{
+int a,c=0,s=0,i;
+cout<<"Enter a number"<<endl;
+for(i=1;i<=5;i++)
+{
+cin>>a;
+if(a%2==1)
+{
+c++;
+s=s+a;
+}
+cout<<"odd count: "<<c<<endl;
+cout<<"odd sum: "<<s<<endl;
+}
+system("pause");
+}
+*/
+
+// print sum and also tell even and odd count
+/*
+void main()
+{
+	int a,i;
+	cout<<"Enter a number to print table: "<<endl;
+	cin>>a;
+	i=1;
+	while(i<5)
+	{
+	cout<<a<<"*"<<i<<"="<<a*i<<endl;
+	i++;
+	}
+system("pause");
+}
+*/
+
+// print table by using while loop
+
+/*
+void main()
+{
+	int a,i,avg,sum=0;
+	cout<<"Enter 10 Numbers"<<endl;
+		for(i=1;i<11;i++)
+		{
+		cin>>a;
+		sum=sum+a;
+		}
+		cout<<"Your sum is: "<<sum<<endl;
+		avg=sum/a;
+		cout<<"your avaerage is: "<<avg<<endl;
+		system("pause");
+}
+*/
+//30 'input 10 numbers and print its avg and sum'
+
+/*
+void main()
+{
+	
+	int a,i,temp;
+	cout<<"Enter 5 Numbers"<<endl;
+	cin>>a;
+	cout<<endl;
+	temp=a;
+       for(i=1;i<=5;i++)
+		{
+		cin>>a;
+		if(a>temp)
+			temp=a;
+	   }
+		 cout<<"Maximum number is: "<<temp<<endl;
+	   
+		 system("pause");
+}
+*/
+//31 'find maximum number between 5 entered numbers'
+
+/*
+void main()
+{
+	int a,i,sum=0;
+	cout<<"Enter 5 Numbers"<<endl;
+	for(i=1;i<=5;i++)
+	{
+	cin>>a;
+	if(a%2==1)
+	{
+	cout<<"ODDS Numbers are: "<<a<<endl;
+	}
+	}
+	sum=sum+a;
+	system("pause");
+}
+*/
+//32 'Entered 5 numbers and tell sum and also tell odds numbers'
+
+
+/*
+void main()
+{
+	int a,i,b;
+	cout<<"Enter a number: "<<endl;
+	cin>>a;
+	for(i=2;i<2;i++)
+	{
+	if(a%i==0)
+		b++;
+	}
+	if(b>0)
+	{
+		cout<<"Not a prime number"<<endl;
+	}
+	else
+		cout<<"Prime number"<<endl;
+		system("pause");
+}
+*/
+//34   prob
+
+/*
+void main()
+{
+int a,c=0,s=0,i;
+cout<<"Enter a number"<<endl;
+for(i=1;i<=5;i++)
+{
+cin>>a;
+if(a%2==1)
+{
+c++;
+s=s+a;
+}
+cout<<"odd count: "<<c<<endl;
+cout<<"odd sum: "<<s<<endl;
+}
+system("pause");
+}
+*/
+
+
+//35
+
+//******************############<<<<<<< MY MAIN PROJECT OF PAKISTAN ELCTRONIC VOTE SYSTEM >>>>>>>############*******************//
+
+
+
+/*
+struct vote_system
+{
+   char name[50];
+   int cnic[10];
+   int vote;
+   int Data_Base[5];
+};
+
+
+vote_system Data_Base_system()
+{
+	vote_system data;
+	int i;
+	cout<<"Enter votes for matching: "<<endl;
+	for(i=0;i<5;i++)
+	cin>>data.Data_Base[i];
+    return data;
+}
+
+ vote_system voter_info()
+ {
+	 vote_system user_info;
+ cout<<"Enter your Name Please: ";
+ cin>>user_info.name;
+ cout<<"Please enter your NADRA valid and regestered CNIC number ";
+ cin>>user_info.cnic[10];
+ return user_info;
+ }
+    
+ vote_system votee()
+{
+	vote_system votee;
+	cout<<"Please Now select favorite leader to vote"<<endl;
+	cout<<endl;
+	cout<<" Press 1 For PTI vote to IMRAN KHAN "<<endl;
+	cout<<" Press 2 For PMLN vote to Nawaz Sharif "<<endl;
+	cout<<" Press 3 For PPP vote to Asif Ali Zardari"<<endl;
+	cin>>votee.vote;
+	{
+		if(votee.vote==1)
+	cout<<"  your vote has been sent to the imran khan (PTI)  "<<endl;
+		else if(votee.vote==2)
+cout<<"  your vote has been sent to the Nawaz Sharif (PMLN)  "<<endl;
+		else if(votee.vote==3)
+cout<<"  your vote has been sent to the Asif Ali Zardari (PPP)  "<<endl;
+else
+	cout<<"You are doing something wrong Please select corrent one";
+	
+  }
+	return votee;
+}
+
+void main()
+{
+	vote_system a,k,j;
+	cout<<"************  Welcome to the Electronic Vote System  *****************"<<endl;
+	cout<<endl;
+	cout<<"**************  We are very glad that you came here to pass your vote  ****************************"<<endl;
+	cout<<endl;	
+	a=Data_Base_system();
+	k=voter_info();
+	if(a.cnic!=a.Data_Base)
+	
+		cout<<"********  Thanks for conformation! Your CNIC number has been conformed  *************"<<endl;
+	else if(a.cnic!=a.Data_Base)
+	{
+		cout<<"**********  Your CNIC is not valid please try again  ********* "<<endl;
+		cin>>a.cnic[10];
+	}
+	//cout<<"********  Thanks for conformation! Your CNIC number has been conformed  *************"<<endl;
+	j=votee();
+	cout<<"  Thanks for submation of your vote  "<<endl;
+	
+	
+	// while(a.cnic!=a.Data_Base);
+		//  cout<<"This is the last chance for you if you will again enter wrong CNIC number"<<endl;
+	system("pause");
+	 // cout<<"then your will be baned so Please enter your CNIC number again last time: "<<endl;
+}	//cin>>k.cnic[10];
+	
+	*/
+
+		
+		
+		
+		// 17. my project of electronic vote system:::::::::
+
+/*
+void main()
+{
+	int a,i;
+	cout<<"Enter a number to print table: "<<endl;
+	cin>>a;
+	i=1;
+	while(i<=5)
+	{
+	cout<<a<<"*"<<i<<"="<<a*i<<endl;
+	i++;
+	}
+system("pause");
+}
+
+//36 'print table using while loop'
+
+
+
+// Array is a variable that can store multiple value of varible with same data type
+//it is also called memory location!
+
+/*
+void main()
+{
+	int a[5];
+	cout<<"Enter a 4 number "<<endl;
+	cin>>a[0];
+	cin>>a[1];
+	cin>>a[2];
+	cin>>a[3];
+	a[4]=a[3]+a[2]+a[1]+a[0];
+	cout<<"sum is: "<<a[4]<<endl;
+system("pause");
+}
+*/
+// 1. find sum of 4 numbers by using array
+
+/*
+void main()
+
+{
+int a[2];
+char k;
+do
+{	cout<<"Enter a number that you have to want to print a table: "<<endl;
+	cin>>a[0];
+	for(a[1]=1;a[1]<=10;a[1]++)
+	{
+		cout<<a[0]<<" * "<<a[1]<<" = "<<a[0]*a[1]<<endl;
+	}
+
+cout<<"Would you like to repeat it(Y/N): "<<endl;
+cin>>k;
+}
+while(k=='Y' || k=='y');
+	system("pause");
+}
+*/
+
+ // 2. print table by using arr
+
+ /*
+void main()
+{
+	int a[3] = {5,25,125},k;
+	cout<<"Enter a location of array: ";
+	cin>>k;
+	cout<<a[k]<<endl;
+system("pause");
+}
+*/
+
+// 3. find multiple values in array by giving location of variable in array
+
+/*
+void main()
+{
+	int n[4];
+	cout<<"Enter the length of array: ";
+	cin>>n[0];
+	for(n[3]=1,n[2]=1;n[2]<=n[0];n[2]++)
+	{
+		n[3]=n[3]*n[2];
+	}
+	cout<<"factorial is: "<<n[3]<<endl;
+	system("pause");
+}
+*/
+// 4. find factorial by using array
+
+/*
+void main()
+{
+	int a[10],c=0,i=0,sum=0;
+	cout<<"Enter 10 numbers: "<<endl;
+	for(int i=0;i<=10;i++)
+	{
+	cin>>a[i];
+	}
+	for(i=0;i<=9;i++)
+	{
+	if(a[i]%2==1)
+	sum=a[i]+sum;
+	c++;
+	}
+	//cout<<"Odds numebers are: "<<arr[i]<<endl;
+	cout<<"count of odds numbers"<<c<<endl;
+	cout<<"sum of odd number is: "<<sum<<endl;
+	system("pause");
+}
+*/
+
+// 5. program to count odd number and their sum
+
+/*
+void main()
+{
+	int num[5],i;
+	int temp;
+	char k;
+	do
+	{
+	cout<<"Enter a number: "<<endl;
+	cin>>num[0];
+	temp=num[0];
+	for(i=1;i<5;i++)
+	{
+       cin>>num[i];
+	   if(num[i]<temp)
+		   temp=num[i];
+	   	}
+	cout<<"Minimun number is: "<<temp<<endl;
+	cout<<"want to repeat it(Y/N): ";
+	cin>>k;
+	cout<<endl;
+	}
+	while(k=='Y'||k=='y');
+	system("pause");
+}
+*/
+
+// 6. finding minimum in array 
+
+/*
+void main()
+{
+	int num[5],i;
+	int temp;
+	char k;
+	do
+	{
+	cout<<"Enter a number: "<<endl;
+	cin>>num[0];
+	temp=num[0];
+	for(i=1;i<5;i++)
+	{
+       cin>>num[i];
+	   if(num[i]>temp)
+		   temp=num[i];
+	   	}
+	cout<<"Minimun number is: "<<temp<<endl;
+	cout<<"want to repeat it(Y/N): ";
+	cin>>k;
+	cout<<endl;
+	}
+	while(k=='Y'||k=='y');
+	system("pause");
+*/
+
+// 7. finding the maximum by using array
+
+/*
+void main()
+{
+	int a[5],i,temp=0;
+	cout<<"Enter 5 numbers: "<<endl;
+	for(i=0;i<5;i++)
+	{
+	cin>>a[i];
+	}
+	for(i=0;i<5;i++)
+		if(a[i]<a[temp])
+		temp=i;
+	{
+		cout<<"min number is: "<<a[temp];
+	}
+	cout<<endl;
+   system("pause");
+}
+*/
+
+// 8. take minimum number from entered numbers by using sperated number  "VIP"
+
+/*
+void main()
+{
+	int a[5],i,temp=0;
+	cout<<"Enter 5 numbers: "<<endl;
+	for(i=0;i<5;i++)
+	{
+	cin>>a[i];
+	}
+	for(i=0;i<5;i++)
+		if(a[i]>a[temp])
+		temp=i;
+	{
+		cout<<"min number is: "<<a[temp];
+	}
+	cout<<endl;
+   system("pause");
+}
+*/
+
+// 9. take maximun number from entered numbers by using sperated number   "VIP"
+
+/*
+void main()
+{
+	int arr[6]={-1,1,8,9,10};
+	int num;
+	int smaller=0;
+	int greater=5;
+	int half;
+	int ans=-1;
+	{
+	cout<<"Enter a number that you have to search: ";
+	cin>>num;
+	for(;smaller<=greater && ans==-1;)
+	{
+		half=(smaller+greater)/2;
+		if(arr[half]==num)
+			ans=half;
+		else if(arr[half]<num)
+			smaller=half+1;
+		else if(arr[half]>num)
+			greater=half-1;
+	}
+	if(ans==-1)
+		cout<<"Result not found !"<<endl;
+	else
+		cout<<"Result is found at "<<ans<<" index"<<endl;
+	}
+	system("pause");
+}
+*/
+
+
+// 10. Binary search algorithm for searching of number? "VIP"
+
+
+/*
+void main()
+{
+	
+	int size, arr[50], i, j, temp;
+	cout<<"Enter Array Size : "<<endl;
+	cin>>size;
+	cout<<"Enter Array Elements : "<<endl;
+	for(i=0; i<size; i++)
+	{
+		cin>>arr[i];
+	}
+	cout<<"Sorting array using selection sort...\n"<<endl;
+	for(i=0; i<size; i++)
+	{
+		for(j=i+1; j<size; j++)
+		{
+			if(arr[i]>arr[j])
+			{
+				temp=arr[i];
+				arr[i]=arr[j];
+				arr[j]=temp;
+			}
+		}
+	}
+	cout<<"Now the Array after sorting is :\n"<<endl;
+	for(i=0; i<size; i++)
+	{
+		cout<<arr[i]<<" "<<endl;
+	}
+system("pause");
+}
+*/
+
+// 12. C++ Program - Selection Sort program but it is some difficult as compare to other 
+
+ 
+/*
+void main()
+{
+	int a[10];
+	int i,m,j,temp;
+	cout<<"Enter numbers: "<<endl;
+	for(i=0;i<5;i++)
+		cin>>a[i];
+	for(j=0;j<5;j++)
+	{
+	m=j;
+	for(int x=j;x<5;x++)
+		if(a[x]<a[m])
+			m=x;
+	temp=a[m];
+	a[m]=a[j];
+	a[j]=temp;
+	}
+	cout<<"sorted data are: (Asendind Order)"<<endl;
+	for(i=0;i<5;i++)
+	cout<<a[i]<<"\t";
+	cout<<endl;
+system("pause");
+}
+*/
+
+// 13. Sorting program easy method sliently differnt form above program and efficent 
+
+
+/*
+void main()
+{
+
+	int mark[5][4];
+	int i,j,sum=0;
+	for(i=0;i<5;i++)
+	{
+	cout<<"Enter the quiz marks: "<<i+1<<endl;
+	{
+		for(j=0;j<4;j++)
+	cout<<"Quiz number: "<<j+1<<endl;
+		cin>>mark[5][2];
+	}
+	}
+	for(i=0;i<5;i++)
+	{
+		sum=0;
+		for(j=0;j<4;j++)
+			{
+				sum=sum+mark[5][4];
+		}
+		cout<<"student numbers:"<<i+1<<"avg= "<<(sum/10.0);
+	}
+	system("pause");
+}
+*/
+
+// problem 14. Multi Demenssion array....!!!!
+
+/*
+void main()
+{
+		int arr[3][2]=
+		{
+		{3, 2},
+		{4, 6},
+		{8, 2},
+	};
+	for(int i=0;i<3;i++)
+	{
+		for(int j=0;j<2;j++)
+		{
+			  cout<< "arr[" << i << "][" << j << "] = " << arr[i][j] << endl;
+	    }
+}
+
+system("pause");
+}
+*/
+
+// 15. Two Demenssion array 
+
+/*
+const int CITY = 2;
+const int WEEK = 7;
+
+void main()
+{
+	int temperature[CITY][WEEK];
+	for(int i=0;i<CITY;i++)
+	{
+		for(int j=0;j<WEEK;j++)
+		{
+			cout<<"CITY:"<<i+1<<",\t"<<"DAY"<<j+1<<endl;
+			cin>>temperature[i][j];
+		}
+	}
+	for(int i=0;i<CITY;i++)
+	{
+		for(int j=0;j<WEEK;j++)
+		{
+			cout<<"CITY:"<<i+1<<",\t"<<"DAY:"<<j+1<<"="<<temperature[i][j]<<endl;
+			
+		}
+	}
+system("pause");
+}
+*/
+
+// 16. Two Dimensional Array C++ Program to store temperature of two different cities for a week and display it.
+
+/*
+const int marks=1;
+const int quiz=2;
+void main()
+{
+	int test[quiz][marks];
+	for(int i=0;i<2;i++)
+	{
+				for(int j=0;j<1;j++)
+				{
+				  cout<<"enter quiz number and there marks: "<<endl;
+				  cin>>test[i][j];
+				}
+	}
+	for(int i=0;i<2;i++)
+	{
+				for(int j=0;j<1;j++)
+				{
+					cout<<"quiz: "<<i+1<<",\t"<<"marks: "<<j+1<<"="<<test[i][j]<<endl;
+				}`
+	}
+  system("pause");
+}
+*/
+
+//Function is the piece of code that name is given by programer.
+//you can execute that function from any where by function calling.
+
+/*
+int input()
+{
+   int r;
+   cout<<"Enter a radius: ";
+   cin>>r;
+   return r;
+}
+float processing(int r)
+{
+	float area;
+	area=3.14*r*r;
+    return area;
+}
+
+void output(float area)
+{
+	cout<<"Area is: "<<area;
+
+}
+
+void main()
+{
+	int r;
+	float area;
+	r=input();
+	area=processing(r);
+	output(area);
+	cout<<endl;
+system("pause");
+}
+*/
+// 18. find area of circle by using function
+
+/*
+int input()
+{
+ int a=0;
+ cout<<"Enter value: "<<a;
+ cin>>a;
+ return a;
+}
+
+int part1(int a, int b)
+{
+	int sum;
+	sum=a+b;
+	return sum;
+}
+int part2(int a,int b)
+{
+	int subtraction;
+	subtraction=a-b;
+	return subtraction;
+}
+
+int part3(int a,int b)
+{
+	int multiplication;
+	multiplication=a*b;
+	return multiplication;
+}
+float part4(int a,int b)
+{
+	float divison;
+	divison=a/b;
+	return divison;
+}
+
+void output(int sum,int subtraction, int multiplication,float divison)
+{
+    cout<<"suma is: "<<sum<<endl;
+	cout<<"subtraction is: "<<subtraction<<endl;
+	cout<<"Multipliacation is: "<<multiplication<<endl;
+	cout<<"Division is: "<<divison<<endl;
+}
+void main()
+{
+	int a;
+	int b;
+	int sum,subtraction,multiplication;
+	float divison;
+	a=input();
+	b=input();
+	sum=part1(a,b);
+	subtraction=part2(a,b);
+	multiplication=part3(a,b);
+	divison=part4(a,b);
+	output(sum,subtraction,multiplication,divison);
+	system("pause");
+}
+*/
+
+
+// 19. taking 2 input and print sum,subtraction,multiplication,division by using function
+
+/*
+char haider()
+{
+ char a[10];
+ cout<<"Enter a world: ";
+cin>>a[10];
+return a[10];
+}
+
+void display(char a[],int i=10)
+{
+cout<<"you have type "<<a[i]<<" world to print so thank you:"<<endl;
+}
+void main()
+{
+	char a[10];
+	a[10]=haider();
+	display(a);
+system("pause");
+}
+*/
+// 20. type a word to print by using function
+
+/*
+int taking_value_from_user()
+{
+int a;
+cout<<"Enter value: ";
+cin>>a;
+return a;
+}
+float processing(int a,int b)
+	{
+     	float avg;
+		avg=(a+b)/2;
+		return avg;
+}
+void display(float avg)
+{
+cout<<"your avarge will be: "<<avg<<endl;
+}
+void main()
+{
+	int a,b;
+	float avg;
+	a=taking_value_from_user();
+	b=taking_value_from_user();
+	avg=processing(a,b);
+	display(avg);
+	system("pause");
+
+}
+*/
+
+// 21. taking avg of 2 number by using function
+
+/* 
+int input();
+int calculate(int a,int b);
+void output(int);
+void main()
+{
+int a,b,g;
+a=input();
+b=input();
+g=calculate(a,b);
+output(g);
+system("pause");
+}
+void output(int g)
+{
+cout<<"avarage: "<<g<<endl;
+}
+int input()
+{  
+	int a,b,g;
+	cout<<"Enter a frist number: ";
+  cin>>a;
+  cout<<"Enter a second number: ";
+  cin>>b;
+  g=calculate(a,b);
+  return g;
+}
+int calculate(int a,int b)
+{	
+	return(a+b)/2;
+}
+*/
+
+// problem
+
+// 22. problem
+
+/*
+int input()
+{
+	int a;
+	cout<<"Enter a number: ";
+	cin>>a;
+	return a;
+
+}
+void swap(int& a, int& b)
+{
+	int temp;
+	temp=a;
+	a=b;
+	b=temp;
+}
+
+void display(int a,int b)
+{
+cout<<a<<"          "<<b<<endl;
+}
+
+void main()
+{
+	int a,b,temp;
+	a=input();
+	b=input();
+	swap(a,b);
+	display(a,b);
+	system("pause");
+}
+*/
+
+// 23. swaping program by using function
+
+/*
+void swap(int& a,int& b);
+void main()
+{
+	int a,b;
+	cout<<"Enter 2 number: "<<endl;
+	cin>>a>>b;
+	swap(a,b);
+	cout<<a<<" \t "<<b<<" \t "<<endl;
+	system("pause");
+}
+void swap(int& a,int& b)
+{
+a=a+b;
+b=a-b;
+a=a-b;
+	
+}
+*/
+
+// 24 . swaping program by using function decleration methode without using temp variable
+
+/*
+void swap(int&,int&);
+void main()
+{
+	int a,b,temp;
+	cout<<"Enter a first number: ";
+	cin>>a;
+	cout<<endl;
+	cout<<"Enter a second value: ";
+	cin>>b;
+	swap(a,b);
+	cout<<"First value is: "<<a<<endl;
+	cout<<"Second value is: "<<b<<endl;
+	system("pause");
+}
+void swap(int&a ,int& b)
+{
+	int temp;
+temp=a;
+a=b;
+b=temp;
+}
+*/
+
+// 25. swaping program by using function decleration methode and also using temp variable
+
+/*
+float addition(int a,int b);
+void output(int avg);
+int input();
+void main()
+{
+	int a,b;
+    int avg;
+	a=input();
+	b=input();
+	avg=addition(a,b);
+	output(avg);
+	system("pause");
+}
+
+int input()
+{
+	int a;
+	cout<<"Enter numbers: ";
+	cin>>a;
+   return a;
+}
+float addition(int a,int b)
+{
+	int avg;
+	avg=(a+b)/2;
+    return avg;
+}
+void output(int avg)
+{
+cout<<"average is: "<<avg<<endl;
+}
+*/
+
+// 25.  taking avg of 2 number by using function
+
+/*
+int enter_a_that_you_have_to_print()
+{
+int a;
+cout<<"Enter a number that you have to print table: ";
+cin>>a;
+return a;
+}
+int processing(int a)
+{
+	for(int i=1;i<=10;i++)
+	{
+	 a*i;
+	cout<<a<<" * "<<i<<" = "<<a*i<<endl;
+	}
+return a;
+}
+void main()
+{
+int a,i=1;
+char k;
+do
+{
+	a=enter_a_that_you_have_to_print();
+processing(a);
+cout<<"would you like to repeat it? (Y/N): ";
+cin>>k;
+}
+while(k=='Y'||k=='y');
+system("pause");
+}
+*/
+
+// 26. write a program that print table value by using function
+
+
+// Note: Array is always by default pass by refrence so it mean we do not have need to use "&" ant_persent symbol for that to spacify that
+// to are same variable mean passing through refrence not value.
+
+/*
+void converting_to_KM(int a[]);
+void main()
+{
+	int a[5]; 
+	int i;
+	cout<<"Enter 5 numbers that you want to convert in K.M: "<<endl;
+	for(int i=0;i<5;i++)
+	cin>>a[i]; // let be these value are in lbs pound
+	cout<<"Entered values are: "<<endl;
+	for(int i=0;i<5;i++)
+	{
+		cout<<a[i]<<endl;
+	}
+
+	converting_to_KM(a);
+system("pause");
+}
+
+void converting_to_KM(int a[])
+{
+
+	for (int i=0;i<5;i++)
+	{
+		a[i]=a[i]/2;    // let 1lbs=0.5K.M or  by 1/2
+		cout<<"converted value will be: "<<a[i]<<endl;
+	}
+}
+}
+*/
+
+// converting of lbs into KM by using function and by accessing array which are refrence
+
+// Note: function overloading refer to multiple function with same name but differnt signature
+// in function signature name can be same but data type must be different 
+
+/*
+void starline();
+void starline(int);
+void starline(char);
+void starline(char,int);
+void main()
+{
+	int n=5;
+	char c;
+	starline();
+	starline(n);
+	starline('*');
+	starline('@',5);
+system("pause");
+}
+void starline()
+{
+cout<<"**********"<<endl;
+}
+
+void starline(int a)
+{
+	for(int i=0;i<a;i++)
+cout<<"******"<<endl;
+}
+
+
+void starline(char c)
+{
+	for(int i=0;i<5;i++)
+	cout<<c<<endl;
+}
+
+void starline(char c,int a)
+{
+for(int i=0;i<a;i++)
+cout<<c<<endl;
+}
+*/
+
+/*
+int input()
+{
+ int num;
+ cout<<"Enter a number"<<endl;
+ cin>>num;
+ return num;
+}
+void correct(int num)
+{
+if(num%2==0)
+ {
+ cout<<"You entered even number"<<endl;
+ }
+}
+void wrong(int num)
+{
+ if(num%2==1)
+ {
+ cout<<"you entered odd number"<<endl;
+ }
+}
+void main()
+{
+	int numa;
+ numa=input();
+ correct(numa);
+ wrong(numa);
+ system("pause");
+}
+*/
+
+// 'checking even or odd by using if-else' by using function
+
+/*
+int input()
+{
+	int a;
+cout<<"Enter your marks please"<<endl;
+cin>>a;
+return a;
+}
+void part1(int a)
+{
+if(a>=80 && a<100)
+cout<<"your grade is A"<<endl;
+}
+void part2(int a)
+{
+if(a>=60 && a<70)
+cout<<"your grade is B"<<endl;
+}
+void part3(int a)
+{
+if(a>=50 && a<60)
+cout<<"your grade is C"<<endl;
+}
+void part4(int a)
+{
+ if(a>=40 && a<50)
+cout<<"your grade is D"<<endl;
+}
+void part5(int a)
+{
+ if(a>=33 && a<40)
+cout<<"your grade is E"<<endl;
+}
+void part6(int a)
+{
+if(a<33)
+cout<<"you are failed boss"<<endl;
+}
+void main()
+{
+int a;
+a=input();
+part1(a);
+part2(a);
+part3(a);
+part4(a);
+part5(a);
+part6(a);
+system("pause");
+}
+*/
+
+//'checking grades by using if-else-if'
+
+/*
+int input_number()
+{
+int a;
+cout<<"enter two numbers: "<<endl;
+cin>>a;
+return a;
+}
+void note()
+{
+	cout<<"enter operator like ('+' or '-' or '*' or '/')"<<endl;
+}
+char input_operater()
+{
+char op;
+cout<<"enter operator: "<<endl;
+cin>>op;
+return op;
+}
+void plus(char& op,int a,int b)
+{
+	if(op =='+')
+	cout<<"your sum : "<<a+b<<endl;
+}
+void subtract(char& op,int a,int b)
+{
+	if(op=='-')
+	cout<<"your subtraction : "<<a-b<<endl;
+}
+void multiplying(char& op,int a,int b)
+{
+		if(op=='*')
+			cout<<"your multiplication : "<<a*b<<endl;
+}
+void dividing(char& op,int a,int b)
+{
+ if(op=='/')
+  cout<<"your division : "<<a/b<<endl;
+		
+}
+void other(char& op,int a,int b)
+{
+	if(op!='+'||op!='-'||op!='-'||op!='/')
+	cout<<"invalid! Please enter correct operator"<<endl;
+}
+void main()
+{
+int a,b;
+char op;
+a=input_number();
+b=input_number();
+note();
+op=input_operater();
+plus(op,a,b);
+subtract(op,a,b);
+multiplying(op,a,b);
+dividing(op,a,b);
+other(op,a,b);
+system("pause");
+}
+*/
+//'Enter a two numbers and then add operation(=,-,*,/) by using function
+
+/*
+int input()
+{
+	int n;
+	cout<<"Enter a number that you have to search: ";
+	cin>>n;
+	return n;
+}
+int half_value()
+{
+	int m,i=0,j=5;
+	m=(i+j)/2;
+	return m;
+}
+int equality(int m,int n,int ans,int a[])
+{
+if(a[m]==n)
+	ans=m;
+return m;
+}
+int smaller(int m,int n,int ans,int a[],int i)
+{
+      if(a[m]<n)
+		i=m+1;
+        return i;
+}
+int greater(int m,int n,int ans,int a[],int j)
+{
+   if(a[m]>n)
+		j=m-1;
+   return j;
+}
+void main()
+{
+	int a[6]={-1,1,8,9,10};
+	int n,i=0,j=5,m,ans=-1;
+	{
+		n=input();
+	   
+	for(;i<=j && ans==-1;)
+	{
+		m=half_value();
+	    equality(m,n,ans,a);
+ 	   smaller(m,n,ans,a,i);
+	   greater(m,n,ans,a,j);
+	
+	}
+	if(ans==-1)
+		cout<<"Result not found !"<<endl;
+	else
+		cout<<"Result is found at "<<ans<<" index"<<endl;
+	}
+	system("pause");
+}
+*/
+
+
+//Binary search algorithm for searching of number by using function  problem "VIP" //pro
+
+
+/*
+int input()
+{
+	int arr[5],i;
+	cout<<"enter 5 numbers: "<<endl;
+	for(i=0;i<5;i++)
+	{
+	cin>>arr[i];
+	}
+	return arr[i];
+}
+void conditionaal(int arr[],int i)
+{
+	
+	if(arr[i]%2==0)
+		cout<<"even number"<<endl;
+	else
+		cout<<"idiot"<<endl;
+}
+
+void main()
+{
+	int a[5],i;
+    a[5]=input();
+	conditionaal(a,i);
+system("pause");
+}
+*/
+// pro
+
+// "New keyword *struct* is use to store multiple data type in one variable"
+//"we can say that it is work like an ARRAY but it can store multi type of data type not a same or a singlr data type"
+
+/*
+struct today
+{ 
+	int date;
+	int months;
+	int years;
+};
+
+today input();
+void output(today start_timing);
+void main()
+{
+	today start_timing;
+	start_timing=input();
+	output(start_timing);
+
+	system("pause");
+}
+
+today input()
+{
+	today start_timing;
+    cout<<"Today date: "<<endl;
+	cin>>start_timing.date>>start_timing.months>>start_timing.years;
+	return start_timing;
+}
+void output(today start_timing)
+{
+cout<<"your new entered date will be: "<<endl;
+cout<<start_timing.date<<"/"<<start_timing.months<<"/"<<start_timing.years<<endl;
+}
+*/
+ // print date by inputing by using struct keyword and display as it is entered date
+
+ /*
+ struct time
+ {
+    int hours;
+	int minutes;
+	int second;
+ };
+
+ 
+ time input1();
+ time processing(time starting,time ending);
+ void output(time solving);
+ void main()
+{
+	time start_timing;
+	time ending_timing;
+	time solving;
+	start_timing=input1();
+	ending_timing=input1();
+	solving=processing(ending_timing,start_timing);
+	output(solving);
+    system("pause");
+}
+
+ time input1()
+ {
+     time start_timing;
+	 cout<<"Enter starting time: ";
+	 cin>>start_timing.hours>>start_timing.minutes>>start_timing.second;
+	 return start_timing;
+ }
+
+ time processing(time starting_timing,time ending_timing)
+ {
+	 time solving;
+	 solving.hours=ending_timing.hours-starting_timing.hours;
+	 solving.minutes=ending_timing.minutes-starting_timing.minutes;
+	 solving.second=ending_timing.second-starting_timing.second;
+	 if(solving.second<0)
+	 {
+		 solving.second=solving.second+60;
+		 solving.minutes--;
+	 }
+	 if(solving.minutes<0)
+	 {
+		 solving.minutes=solving.minutes+60;
+		 solving.hours--;
+	 }
+	 if(solving.hours<0)
+	 {
+		 solving.hours=solving.hours+24;
+	 }
+
+
+	 return solving;
+ }
+
+ void output(time solving)
+ {
+ 
+      cout<<solving.hours<<":"<<solving.minutes<<":"<<solving.second<<endl;
+ }
+ 
+ */
+ // program that display how much time has by subtracting ending time from starting time 
+
+/*
+struct Profile
+{
+   string Name;
+   string  father_Name;
+   string addresss;
+   int cnic;
+   int phone_number;
+   int ID;
+};
+
+Profile input_name();
+void output(Profile name);
+void main()
+{
+	Profile a;
+	a=input_name();
+	output(a);
+	system("pause");
+}
+
+Profile input_name()
+{
+	Profile name;
+	cout<<"enter your name please: ";
+	cin>>name.Name;
+    cout<<"enter your father name please: ";
+	cin>>name.father_Name;
+  	cout<<"enter your home address please: ";
+	cin>>name.addresss;
+   	cout<<"enter your CNIC please: ";
+	cin>>name.cnic;
+   	cout<<"enter your phone number please: ";
+	cin>>name.phone_number;
+   	cout<<"enter your ID please: ";
+	cin>>name.ID;
+    return name;
+}
+void output(Profile name)
+{
+	Profile java=name;
+	cout<<java.Name<<"\n"<<java.father_Name<<"\n"<<java.addresss<<"\n"<<java.cnic<<"\n"<<java.phone_number<<"\n"<<java.ID<<"\n";
+}
+*/
+
+// program that input Profile of student with different attributes and display them as it is
+
+/*
+struct Bank
+{
+  string name[10];
+  int account_number;
+  int ammount;
+};
+
+Bank create_account()
+{
+	Bank info;
+	cout<<"Enter your name: ";
+	cin>>info.name[10];
+	cout<<"Enter account number: ";
+	cin>>info.account_number;
+	cout<<"Enter your ammount: ";
+	cin>>info.ammount;
+	return info;
+}
+Bank with_drawl(Bank info)
+{
+	int debit;
+	cout<<"Enter ammount that you have to withdrawl: ";
+	cin>>debit;
+	info.ammount=info.ammount-debit;
+	cout<<"your total amount after withdrawl: "<<info.ammount<<endl;
+	return info;
+  }
+Bank deposite(Bank info)
+{
+	int debite;
+	cout<<"Enter ammount that you have to deposite: ";
+	cin>>debite;
+	info.ammount=info.ammount+debite;
+	cout<<"your to ammount after deposite: "<<info.ammount<<endl;
+	return info;
+ }
+
+void main()
+{
+	Bank a;
+	int k=0;
+	char option;
+do
+{
+	a=create_account();
+	cout<<endl;
+	cout<<"***** Welcom to our Bank and we hope you will be enjoing good health *****"<<endl;
+	cout<<endl;
+	cout<<" Press 1 to withdrawal the amount "<<endl;
+	cout<<endl;
+	cout<<" Press 2 to deposite the amount "<<endl;
+	cout<<endl;
+	cout<<"Enter your choice: ";
+	cin>>k;
+	if(k==1)
+	{
+	a=with_drawl(a);
+	}
+	else if (k==2)
+	{
+	  deposite(a);
+	}
+	cout<<"would you like to repeat it (Y/N): ";
+	cin>>option;
+	cout<<endl;
+}
+while(option=='Y' || option=='y');
+	system("pause");
+}
+*/
+
+// program to implement BANK system
+
+
+
+/*
+struct Time
+{
+   int hour;
+   int mint;
+   int second;
+};
+
+Time input()
+{
+  Time a;
+  cout<<endl;
+  cout<<"Enter hours in 24-Hours format: ";
+  cin>>a.hour;
+  cout<<endl;
+  cout<<"Enter mint: ";
+  cin>>a.mint;
+  cout<<endl;
+  cout<<"Enter Second: ";
+  cin>>a.second;
+  cout<<endl;
+  return a;
+}
+void processing(Time a)
+{
+	char c='0';
+	if((a.hour<10)||(a.mint<10)||(a.second<10))
+	if(a.hour>0 && a.hour<12)
+	{
+		    cout<<c<<a.hour<<":"<<c<<a.mint<<":"<<c<<a.second<<"\t"<<"A.M"<<endl;
+	}
+	 else if(a.hour>12 && a.hour<24)
+	{
+		a.hour=a.hour-12;
+	cout<<c<<a.hour<<":"<<c<<a.mint<<":"<<c<<a.second<<"\t"<<"P.M"<<endl;
+	}
+	else if(a.hour==12)
+	{
+	  		cout<<a.hour<<":"<<c<<a.mint<<":"<<c<<a.second<<"\t"<<"P.M"<<endl; 
+	}
+	else
+	{
+		a.hour=12;
+		cout<<a.hour<<":"<<c<<a.mint<<":"<<c<<a.second<<"\t"<<"A.M"<<endl;
+	}
+}
+void main()
+{
+	Time a;
+	cout<<"*****************  Hey welcome to here  ********************"<<endl;
+		cout<<"*****************  TIME COVERSION  ****************************"<<endl;
+	a=input();
+	cout<<endl<<"Convertable time will be: ";
+	processing(a);
+	cout<<endl;
+	cout<<endl;
+	system("pause");
+}
+
+*/
+
+/*
+struct student
+{
+   char name[50];
+   char father_name[50];
+   int cnic[10];
+   int cgpa;
+
+};
+
+student input()
+{
+	student a;
+	cout<<"Enter your name: ";
+	cin>>a.name;
+	cout<<"Enter your father name: ";
+	cin>>a.father_name;
+	cout<<"Enter your CNIC number: ";
+	cin>>a.cnic[10];
+	cout<<"Enter your CGPA: ";
+	cin>>a.cgpa;
+	return a;
+}
+
+void output(student a)
+{
+	if(a.cgpa>=80 && a.cgpa<100)
+cout<<"your grade is 4.0"<<endl;
+else if(a.cgpa>=60 && a.cgpa<70)
+cout<<"your grade is 3.5"<<endl;
+else if(a.cgpa>=50 && a.cgpa<60)
+cout<<"your grade is 3.0"<<endl;
+else if(a.cgpa>=40 && a.cgpa<50)
+cout<<"your grade is 2.5"<<endl;
+else if(a.cgpa>=33 && a.cgpa<40)
+cout<<"your grade is 2.0"<<endl;
+else
+cout<<"you are failed boss"<<endl;
+
+}
+
+void main()
+{
+	char k;
+ do
+    {
+	     student java;
+	     const int s= 2;
+		  java=input();
+	     cout<<endl<<endl;
+	     output(java);
+		 cout<<"Would you want to repeat it again(Y/N): ";
+		 cin>>k;
+		 cout<<endl;
+    }
+	
+	   while(k=='Y'|| k=='y');
+	   cout<<endl;
+	   system("pause");
+}
+	
+	*/
+  
+/*
+struct arr
+{
+   int a[10];
+   int b[5];
+   int c[3];
+};
+arr repeat()
+{
+  arr j;
+  int i;
+ cout<<"Enter number: "<<endl;
+  for(i=0;i<10;i++)
+	  cin>>j.a[10];
+  return j;
+}
+arr second(arr j)
+{
+	
+	arr ken;
+	for(ken.a; ;)
+}
+
+
+void main()
+{
+	arr a;
+	a=repeat();
+ system("pause");
+}
+
+*/
+
+/*
+void main()
+{
+	int a[5];
+	int b[3];
+	//int c[2];
+	int i,k;
+	cout<<"Enter 5 numbers: ";
+	for(i=0;i<5;i++)
+     cin>>a[i];
+	//for(i=0;i<5;i++)
+	  for(k=0;k<3;k++)
+	       	a[i]=b[k];
+	  cout<<a[i];
+		
+		    for(k=a[0];k<a[4];k++)
+		   	{
+				a[k]=b[k];
+             	cout<<a[k];
+		    }
+		   
+		system("pause");x
+	}
+*/
+
+ 
+/*
+int haider()
+	{
+		int a[5];
+		int i;
+	   cout<<"Enter 5 numbers: ";
+	for(i=0;i<5;i++)
+    {
+		cin>>a[i];
+	}
+	cout<<"print: "<<a[i]<<endl;
+	return a[i];
+	
+	}
+	
+    void nazzim(int a[])
+	{
+		 int i;
+	   cout<<"your convertable values are: "<<endl;
+		 for(i=0;i<5;i++)
+			 a[i]=a[i]*2;
+		 cout<<"convertable: "<<a[i];
+	  // return a[l];	
+	}
+	
+
+
+void main()
+{  
+	int b;
+	b=haider();
+	//cout<<"print: "<<;
+	nazzim(b);
+
+	system("pause");
+}
+*/
+
+// problem in this program:
+
+/*
+struct group
+{
+   int person1[5];
+   int person2[5];
+   int person3[5];
+};
+
+group input()
+{
+   group a;
+   int i;
+   cout<<"Enter 5 numbers: "<<endl;
+   for(i=0;i<5;i++)
+   {
+	   cin>>a.person1[i];
+   }  
+    for(int x=0;x<3;x++)
+ {
+	 a.person2[x]=a.person1[x];
+     cout<<endl<<"copy 3 indexes: "<<a.person2[x]; 
+ }
+     return a;
+   
+}
+group input2()
+{
+	  group b; 
+	  int x;
+	 for(x=4;x<6;x++)
+	 {
+		 b.person3[x]=b.person1[x];
+	   cout<<endl<<"copy 2 indexes: "<<b.person3[x];  
+	 }
+	 return b;
+}
+void main()
+{
+	group a,b;
+	a=input();
+	b=input2();
+	cout<<endl;
+	system("pause");
+}
+*/
+
+// copying array element to another array
+
+/*
+struct Time
+{
+   int hour;
+   int mint;
+   int second;
+};
+
+Time input()
+{
+  Time a;
+  cout<<endl;
+  cout<<"Enter hours in 24-Hours format: ";
+  cin>>a.hour;
+  cout<<endl;
+  cout<<"Enter mint: ";
+  cin>>a.mint;
+  cout<<endl;
+  cout<<"Enter Second: ";
+  cin>>a.second;
+  cout<<endl;
+  return a;
+}
+void processing(Time a)
+{
+	char c='0';
+	if(a.hour>=0 && a.hour<12)
+	{
+		if(a.hour==0)
+			a.hour=a.hour+12;
+		   {
+			   if((a.hour<10) || (a.mint<10) || (a.second<10))
+				cout<<"convertable time will be: "<<c<<a.hour<<":"<<c<<a.mint<<":"<<c<<a.second<<" a.m"<<endl;
+		   }
+	}
+
+	
+	else if(a.hour>=12 && a.hour<=24)
+	{
+		char c='0';
+	   if(a.hour>12)
+		 {
+			 a.hour=a.hour-12;
+	   if((a.hour<10) || (a.mint<10) || (a.second<10))
+	   {
+	cout<<"convertable time will be: "<<c<<a.hour<<":"<<c<<a.mint<<":"<<c<<a.second<<" p.m"<<endl;
+	}
+	   }
+}
+}
+void main()
+{
+	Time a;
+	char k;
+do
+{
+	cout<<"*****************  Hey welcome to here  ********************"<<endl;
+		cout<<"*****************  TIME COVERSION  ****************************"<<endl;
+	a=input();
+	cout<<endl<<"Convertable time will be: ";
+	processing(a);
+	cout<<endl;
+   cout<<endl;
+    cout<<"will you like to repeat (Y/N): ";
+	cin>>k;
+}
+    while(k=='y' || k=='Y');
+{
+
+}
+system("pause");
+}
+*/
+
+
+/*
+struct book
+{
+  char Book_name[10];
+  char Auther_name[10];
+  int Num_pages;
+  int Price;
+
+};
+
+book info()
+{
+  book a;
+  cout<<"Enter book name: ";
+  cin>>a.Book_name;
+  cout<<"Enter book auther name: ";
+  cin>>a.Auther_name;
+  cout<<"Enter book pages: ";
+  cin>>a.Num_pages;
+  cout<<"Enter price of book: ";
+  cin>>a.Price;
+  return a;
+}
+
+void output(book a)
+{
+	cout<<a.Auther_name<<endl<<a.Book_name<<endl<<a.Num_pages<<endl<<a.Price<<endl<<endl;
+}
+
+void main()
+{
+	book kamchor;
+	kamchor=info();
+	output(kamchor);
+	system("pause");
+}
+*/
+
+
+
+                         //***************************************************************
+                        //                        2ND Semester
+                        //****************************************************************
+
+
+//***************************************************************
+//                   Object Oriented Programming
+//****************************************************************
+
+// NOTE: Object = is contained of attributes and behaviour(Functionality)
+// NOTE: Class = is the blue print as any blue print gives us convinent way to do thing more good same as class gives us to do program more easy!
+// NOTE: The syntax of class is same like 'struct' like keyword with 'class' name of class then curly brackets and at the end semi-colon
+// and content goes inside it
+
+/*
+class student_mark
+{
+  char name;
+  char father_name;
+  int registaration_no;
+  int CNIC;
+  int phone_no;
+  
+public:
+  void input()
+  {
+	  cout<<"Enter your name: ";
+	  cin>>name;
+	  cout<<endl;
+	  cout<<"Enter your father name: ";
+	  cin>>father_name;
+	  cout<<endl;
+	  cout<<"Enter your registration number: ";
+	  cin>>registaration_no;
+	  cout<<endl;
+	  cout<<"Enter your CNIC number: ";
+	  cin>>CNIC;
+	  cout<<endl;
+	  cout<<"Enter your phone number name: ";
+	  cin>>phone_no;
+	  cout<<endl;
+
+  }
+  void output()
+  {
+    cout<<"Entered Name is: "<<name<<endl;
+	cout<<"Entered Father Name is: "<<father_name<<endl;
+	cout<<"Entered registartion number is: "<<registaration_no<<endl;
+	cout<<"Entered CNIC is: "<<CNIC<<endl;
+	cout<<"Entered Phone number is: "<<phone_no<<endl;
+  }
+
+ 
+};
+ void main()
+{
+  student_mark s1,s2;
+  s1.input();
+  s2.input();
+  cout<<"Data of s1"<<endl;
+  s1.output();
+  cout<<"Data of s2"<<endl;
+  s2.output();
+  system("pause");
+}
+*/
+
+//***************************************************************
+//                   print entered data by using classes
+//****************************************************************
+
+
+/*
+
+using namespace std;
+class student_mark
+{
+  int PF;
+  int DS;
+  int Calculus;
+  int ITC;
+  int English;
+
+public:
+  void input()
+  {
+	  abc:
+	  cout<<"Enter your PF: ";
+	  cin>>PF;
+	  if(PF<40 || PF>100)
+	  {
+	  	cout<<"you are failed";
+	     goto abc;
+	  }
+	 	  cout<<endl;
+	  deef:
+	  cout<<"Enter your DS: ";
+	  cin>>DS;
+	  if(DS<40 || DS>100)
+	  {
+		 cout<<"you are failed";
+	    goto deef;
+	  }
+	  cout<<endl;
+	  ghi:
+
+	  cout<<"Enter your Calculus: ";
+	  cin>>Calculus;
+	  if(Calculus<40 || Calculus>100)
+	  {
+	  	cout<<"you are failed";
+	    goto ghi;
+	  }
+	  cout<<endl;
+	  jkl:
+	  cout<<"Enter your ITC: ";
+	  cin>>ITC;
+	  if(ITC<40 || ITC>100)
+	  {
+	  	cout<<"you are failed";
+	    goto jkl;
+	  }
+	  cout<<endl;
+	  mno:
+	  cout<<"Enter your English: ";
+	  cin>>English;
+	  if(English<40 || English>100)
+	  {
+	  	cout<<"you are failed";
+	    goto mno;
+	  }
+	  cout<<endl;
+
+  }
+  void output()
+  {
+    cout<<"Entered PF: "<<PF<<endl;
+	cout<<"Entered DS: "<<DS<<endl;
+	cout<<"Entered Calculus: "<<Calculus<<endl;
+	cout<<"Entered ITC: "<<ITC<<endl;
+	cout<<"Entered English: "<<English<<endl;
+  }
+
+
+};
+ int main()
+{
+  student_mark s1,s2;
+  s1.input();
+  cout<<"Data of s1"<<endl;
+  s1.output();
+  system("pause");
+}
+ 
+ */
+
+ //***************************************************************
+//                   Constructor
+//****************************************************************
+
+
+// Note: How to identify and construct the "Constructor"
+//   1. Constructor name always will be class name.
+//   2. Constructor always have no return type even we can't use void 
+//   3. Constructor is Always public
+// Note: types of constructor
+//   1. Default constructor
+//   2. Parameterzied constructor
+//   3. Copy constructor
+
+
+//***************************************************************
+// print entered data by using class and also use "Default Constructor"
+//****************************************************************
+
+/*
+ class student
+ {
+ private:
+  string Name;
+  string father_Name;
+  int age;
+ public:
+	 student() :Name("nil"), father_Name("nil"),age(-1)
+	 {
+	 
+	 }
+	 student(string Name, string father_Name, int Age)
+	 {
+	  this->Name = Name;
+	  this->father_Name = father_Name;
+	  this->age = age;
+	 }
+	 void get()
+	{
+	  cout<<"Enter name: "<<endl;
+	  cin>>Name;
+	  cout<<"Enter father name: "<<endl;
+	  cin>>father_Name;
+	  cout<<"Enter age: "<<endl;
+	  cin>>age;
+	}
+	void set(string name, string father_name, int age)
+	{
+	  this->Name = name;
+	  this->father_Name = father_name;
+	  this->age = age;
+	}
+	void display()
+	{
+	  cout<<"name: "<<Name<<endl;
+	  cout<<"father name: "<<father_Name<<endl;
+	  cout<<"age: "<<age<<endl;
+	}
+	};
+
+	void main()
+	{
+	  system("Color a");
+	  student swag;
+	  cout<<endl;
+	  swag.get();
+	  cout<<endl;
+	  swag.get();
+	  cout<<endl;
+	  swag.set("WOW","Hurrah",-786);
+	  cout<<endl;
+	  swag.display();
+	  cout<<endl;	  
+	  system("pause");
+	 
+	}
+	
+ */
+
+
+//***************************************************************
+// print entered data by using class and also use "
+// Default Constructor & Parametrized Constructor"
+// if we don't put and value constructor atomaically put values
+// with also use "BOOL Condition"
+//****************************************************************
+
+
+/*
+ class  Student_Quiz {
+	 private:
+	 int pf;
+	 int itc;
+	 int oop;
+ public:
+	 Student_Quiz ():  pf(10),itc(20),oop(30)  //default constructor
+	 {}
+
+
+	 Student_Quiz (int Pf,int Itc,int OOP) // parametherized constructor
+{
+
+	pf=Pf;
+	itc=Itc;
+	oop=OOP;
+}
+
+void get ()    // get input marks
+{
+	cout << "Enter Pf Marks:";cin >> pf;
+	cout << "Enter Itc Marks:";cin >> itc;
+	cout << "Enter OOP Marks:";cin >> oop;
+}
+void set ( int Pf,int Itc,int OOP) // this function is use to change the entered value
+{
+	pf=Pf;
+	itc=Itc;
+	oop=OOP;
+}
+void display () // this function is use to display the value
+{
+	cout << "Pf:"<< pf<< "\nItc:"<<itc<< "\nOOP:"<<oop<< endl;
+}
+bool aka (Student_Quiz s) // this bool function is use to take desion 
+{
+	if (pf>s.pf)
+	{
+		return true;
+	}
+	return false;
+}
+
+ };
+ void main()
+ {
+	 Student_Quiz s1;//(68,87,56);
+ 	 Student_Quiz s2;//(60,50,40);
+		 s1.display();
+		 s2.display();
+		 s2.set(55,89,56);
+			 s2.display();
+		 if (s1.aka(s2))
+		 {
+			 cout << "s1 has higher marks" << "in pf";
+		 }
+		 else
+		 {
+			 cout<<"s2 has higher marks in pf";
+		 }
+		 cout<<endl;
+		 system ("pause");
+ }
+
+ */
+ 
+
+//***************************************************************
+//                  
+// print entered data by using class and also use "Parametrized Constructor"
+// if we don't put and value constructor atomaically put values
+//****************************************************************
+
+/*
+
+class haider
+{
+  private:
+	 int pf;
+	 int itc;
+	 int oop;
+ public:
+	haider (int pf,int itc,int oop) // parametherized constructor
+{
+
+	this->pf=pf;        // here is use this to differinate class variable to the contructor variable
+	this->itc=itc;
+	this->oop=oop;
+}
+
+
+	 void get()    // get input marks
+{
+	cout << "Enter Pf Marks:";cin >> pf;
+	cout << "Enter Itc Marks:";cin >> itc;
+	cout << "Enter OOP Marks:";cin >> oop;
+}
+void set ( int a,int b,int c) // this function is use to change the entered value
+{
+	pf=a;
+	itc=b;
+	oop=c;
+}
+void display () // this function is use to display the value
+{
+	cout << "Pf:"<< pf<< "\nItc:"<<itc<< "\nOOP:"<<oop<< endl;
+}
+
+};
+void main()
+{
+	
+	haider s1(100,200,300);
+ 	haider s2(400,500,600); 
+	cout<<endl;
+		  s1.get();
+		  cout<<endl;
+		  s1.display();
+		  cout<<endl;
+		  s1.set(4,5,6);
+		  cout<<endl;
+		  s1.display();
+		  s2.get();
+		  cout<<endl;
+		  s2.display();
+		  cout<<endl;
+		  s2.set(7,8,9);
+		  cout<<endl;
+		  s2.display();
+		 s2.set(55,89,56);
+		 s2.display();
+	system("pause");
+}
+
+*/
+
+//***************************************************************
+// print entered data by using class and also use "Default Constructor"
+// if we don't put and value constructor atomaically put values
+//****************************************************************
+
+/*
+ class haider
+ {
+ private:
+   string name;
+   string father;
+   int age;
+ public:
+   haider() :name("Please enter the valid name"),father("Please enter the valid father name"),age(-1)
+   {}
+
+   
+	 void input()    // get input marks
+{
+	cout << "Enter name: ";
+	cin >> name;
+	cout << "Enter father name: ";
+	cin >> father;
+	cout << "Enter age: ";
+	cin >> age;
+}
+void for_changing ( string name,string father,int age) // this function is use to change the entered value
+{
+	this->name=name;
+	this->father=father;
+	this->age=age;
+}
+void output () // this function is use to display the value
+{
+	cout << "NAME: "<< name<< "\nFATHER: "<<father<< "\nAGE:"<<age<< endl;
+}
+
+ };
+
+void main()
+ {
+	 haider s1;
+
+	 s1.input();
+	 cout<<endl;
+	 s1.output();
+	 cout<<endl;
+	 s1.for_changing("a","b",45);
+	 cout<<endl;
+	 s1.output();
+
+  system("COLOR A");
+    printf("Welcome to the color changing application!\n");
+ system("pause");
+ }
+
+ */
+
+//***************************************************************
+//    print the Circle radius by using class
+//****************************************************************
+
+/*
+
+class Circle {
+private:
+   double radius;      // Data member (Variable)
+   string color;       // Data member (Variable)
+ 
+public:
+   // Constructor with default values for data members
+   Circle(double r = 1.0, string c = "red") {
+      radius = r;
+      color = c;
+   }
+ 
+   double getRadius() {  // Member function (Getter)
+      return radius;
+   }
+ 
+   string getColor() {   // Member function (Getter)
+      return color;
+   }
+ 
+   double getArea() {    // Member function
+      return radius*radius*3.1416;
+   }
+};   // need to end the class declaration with a semi-colon
+ 
+// Test driver function
+void main() {
+   // Construct a Circle instance
+   Circle c1(1.2, "blue");
+   cout << "Radius=" << c1.getRadius() << " Area=" << c1.getArea()
+        << " Color=" << c1.getColor() << endl;
+ 
+   // Construct another Circle instance
+   Circle c2(3.4); // default color
+   cout << "Radius=" << c2.getRadius() << " Area=" << c2.getArea()
+        << " Color=" << c2.getColor() << endl;
+ 
+   // Construct a Circle instance using default no-arg constructor
+   Circle c3;      // default radius and color
+   cout << "Radius=" << c3.getRadius() << " Area=" << c3.getArea()
+        << " Color=" << c3.getColor() << endl;
+  system("pause");
+}
+
+*/
+
+//***************************************************************
+//    OOP Chapter 6  Exercise Q.1 Solution
+//****************************************************************
+
+/*
+ class Int
+ {
+ private:
+   int i;
+ public:
+	 Int(): i(0)     // this is a default constructor
+	 {}
+	 
+	 Int(int h)
+	 {
+		 i=h;
+	 }
+	 
+	 void add()                           // adding function
+		                                     //  i can also pass these variable in argument (Int a, Int b)              
+	 {                                
+		 Int a = 2;
+		 Int b = 7;                           
+	  	 i = a.i + b.i;                                  
+	 }                                                      // displaying function
+	 void output()
+	 {
+	    cout<<i<<endl;
+	 }
+ };
+void main()
+ {
+	 system("color a");
+	 Int a();                           //intialize class type variable   'a'    giving arguemnt values     (7);
+	 Int b();                            //intialize class type variable   'b'   giving arguemnt values     (2);
+	 Int c;                              //intialize class type variable   'c'
+	 c.add();                            //store adding result of a and b as add function in c      giving arguemnt values     (a,b);
+	 cout<<"\n c = ";     
+	 c.output();
+ system("pause");
+ }
+ */
+
+ //***************************************************************
+//    OOP Chapter 6  Exercise Q.2 Solution
+//****************************************************************
+
+
+/*
+const char ESC = 27;
+const double TOLL = 0.5;
+
+ class tollBooth
+{
+private:
+   int totalCars;                          // total no of cars passed today
+   double totalCash;                        // total no of cash collected today
+public:
+	tollBooth(): totalCars(0),totalCash(0.0)
+	{}
+
+	void payingCar()
+	{
+		totalCars++;
+		totalCash=totalCash+TOLL;
+	}
+void nopayingCar()
+	{
+		totalCars++;
+	}
+void display()
+const
+{
+	cout<<"CAR = "<<totalCars<<endl;
+	cout<<"CASH = "<<totalCash<<endl;
+}
+};
+
+
+
+void main()
+{
+system("color a");
+tollBooth ali;
+cout<<" Press 0 for each non paying car"<<endl;
+cout<<" Press 1 for each paying car"<<endl;
+cout<<"  Press ESC for exit the program"<<endl;
+char option;
+do
+{
+	cin>>option;
+	if(option=='0')
+	 ali.nopayingCar();
+	if(option=='1')
+	 ali.payingCar();
+}
+while(option != ESC);
+ali.display();
+system("pause");
+}
+*/
+
+
+ //***************************************************************
+//    OOP Chapter 6  Exercise Q.3 Solution
+//****************************************************************
+
+/*
+class Time
+{
+private:
+	int Hours;
+	int Minutes;
+	int Seconds;
+public:
+	Time() : Hours(0),Minutes(0),Seconds(0)
+	{}
+	Time(int Hours,int Minutes,int Seconds)
+	{
+		this->Hours = Hours;
+		this->Minutes = Minutes;
+		this->Seconds = Seconds;
+	}
+	void display()
+	{
+		cout<<Hours<<":"<<Minutes<<":"<<Seconds<<endl;
+	}
+
+	void addTime(Time time1,Time time2)
+	{
+		Seconds = time1.Seconds+time2.Seconds;
+		if(Seconds>59)
+			{
+				Seconds = Seconds - 60;
+		       Minutes++;
+	        }
+	
+		Minutes = time1.Minutes+time2.Minutes;
+		if(Minutes>59)
+			{
+				Minutes = Minutes - 60;
+				Hours++;
+	        }
+		Hours=time1.Hours+time2.Hours;
+	
+	}
+
+};
+void main()
+{
+	system("color a");
+	const Time t1(5,59,59);
+	const Time t2(4,30,30);
+	Time t3;
+	t3.addTime(t1,t2);
+	cout<<"TIME 3 = ";
+	t3.display();
+  system("pause");
+}
+*/
+
+ //***************************************************************
+//    OOP Chapter 6  Exercise Q.4 Solution
+//****************************************************************
+
+/*
+class Employee
+{
+private:
+  int employeeNumber;
+  float employeeCompensation;
+public:
+  void input()
+  {
+	cout<<"Enter Employee Number: ";
+	cin>>employeeNumber;
+	cout<<endl;
+	cout<<"Enter Employee Compensation: ";
+	cin>>employeeCompensation;
+    cout<<endl;
+  }
+void display()
+  {
+	cout<<"Employee Number: "<<employeeNumber<<endl;
+	cout<<"Employee Compensation: "<<employeeCompensation<<endl;
+	cout<<endl;
+  }
+};
+void main()
+{
+	system("color a");
+	Employee e1,e2,e3;
+	e1.input();
+	e2.input();
+	e3.input();
+	e1.display();
+	e2.display();
+	e3.display();
+	system("pause");
+}
+
+*/
+
+//***************************************************************
+//    OOP Chapter 6  Exercise Q.5 Solution
+//****************************************************************
+
+/*
+class Date
+{
+private:
+  int day;
+  int month;
+  int year;
+public:
+  void input()
+  {
+    cout<<"Enter the day: ";
+	cin>>day;
+	cout<<endl;
+	cout<<"Enter the Month: ";
+	cin>>month;
+	cout<<endl;
+	cout<<"Enter the year: ";
+	cin>>year;
+	cout<<endl;
+  }
+  void output()
+  {
+    cout<<"date will be"<<endl;
+	cout<<day<<"/"<<month<<"/"<<year<<endl;
+  }
+};
+
+void main()
+{
+	system("color a");
+	Date d1;
+	d1.input();
+	d1.output();
+system("pause");
+}
+*/
+
+ //***************************************************************
+//    OOP Chapter 6  Exercise Q.6 Solution
+//****************************************************************
+
+
+class Employee
+{
+private:
+  int employeeNumber;
+  float employeeCompensation;
+  
+  public:
+  void input()
+  {
+	cout<<"Enter Employee Number: ";
+	cin>>employeeNumber;
+	cout<<endl;
+	cout<<"Enter Employee Compensation: ";
+	cin>>employeeCompensation;
+    cout<<endl;
+  }
+void display()
+  {
+	cout<<"Employee Number: "<<employeeNumber<<endl;
+	cout<<"Employee Compensation: "<<employeeCompensation<<endl;
+	cout<<endl;
+  }
+};
+
+void main()
+{
+	system("color a");
+	Employee e1,e2,e3;
+	cout<<"Enter 'l' for labourer"<<endl;
+	cout<<"Enter 's' for Secretary"<<endl;
+	cout<<"Enter 'm' for Manager"<<endl;
+	cout<<"Enter 'a' for Accountant"<<endl;
+	cout<<"Enter 'e' for Executive"<<endl;
+	cout<<"Enter 'r' for Rseacher"<<endl;
+	cout<<"Enter type of Employee: "<<endl;
+	char ch;
+	cin>>ch;
+	switch(ch)
+	{
+	case 'l':
+	e1.input();
+	e2.input();
+	e3.input();
+	e1.display();
+	e2.display();
+	e3.display();
+	break;
+	case's':
+	e1.input();
+	e2.input();
+	e3.input();
+	e1.display();
+	e2.display();
+	e3.display();
+	break;
+	case'm':
+	e1.input();
+	e2.input();
+	e3.input();
+	e1.display();
+	e2.display();
+	e3.display();
+	break;
+	case'a':
+	e1.input();
+	e2.input();
+	e3.input();
+	e1.display();
+	e2.display();
+	e3.display();
+	break;
+	case'e':
+	e1.input();
+	e2.input();
+	e3.input();
+	e1.display();
+	e2.display();
+	e3.display();
+	case'r':
+	e1.input();
+	e2.input();
+	e3.input();
+	e1.display();
+	e2.display();
+	e3.display();
+	break;
+	default:
+		cout<<"you are doing something wrong! ";
+	}
+	
+	system("pause");
+}
+
+
+
+
+
